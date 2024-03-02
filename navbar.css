@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Modak&display=swap');
+
+.grid {
+    display: grid;
+    grid-template-columns: 400px auto;
+    grid-template-rows: 100px minmax(250px, auto) 100px;
+    grid-template-areas: 
+        'header header'
+        'leftber main'
+        'footer footer';
+}
+
+
+.header {
+    grid-area: header;
+}
+
+
+/* Header bar*/
+.top {
+    width: 180px;
+    float: left;
+    margin-top: -20px;
+}
+
+.top-header {
+    background-color: #F9D390;
+    box-shadow: 0px 0px 8px 0px rgb(102, 88, 61);
+}
+.head {
+    color: #000000;
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+    margin: 5px;    
+    margin-left: 70px;                             
+}
+
+.menu-item {
+    color: #000000;
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+    position: absolute;
+    top: 2.5%;
+    left: 80%;
+}
+.menu-item:hover{
+    color: red;
+}
+
+a:hover {
+    color: white;
+}
+
+
+.brand {
+    display: inline-block;
+    font-size: 48px;
+    font-weight: 500;
+    color: #E67877;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-decoration: none;
+    font-family: 'Modak', cursive
+}
+
+a.brand:hover{
+    color: #E67877;
+}
+.font {
+    color: #000000;
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+    
+    font-size: 18px;
+    font-weight: 800px;
+}
+
+.button {
+    color: #ffffff;
+    background-color: #0056b3;
+    padding: 15px;
+    text-align: center;
+    display: inline-block;
+    width: 7%;
+    border: 3px solid #000000;
+    border-radius: 30px;
+
+}
+
+.image {
+    max-width: 700px;
+    margin: auto;
+}
+
+.search-bar {
+    position: absolute;
+    left: 30%;
+    top: 3%;
+    width: 60vh;
+}
+
+#search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    width: 50vh;
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: #3D3CE7;
+    color: #fff;
+    border: none;
+    border-radius: 0px;
+    margin-left: 0px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #3c3ce7e0;
+}
+
+.favour-baricon{
+    width: 100%;
+    max-width: 36px;
+    position: absolute;
+    top: 2.5%;
+    left: 75%;
+    transform: translateX(-75%);
+}
+
+.chat-baricon{
+    width: 100%;
+    max-width: 28px;
+    position: absolute;
+    top: 3%;
+    left: 78%;
+    transform: translateX(-80%);
+    color: #000000;
+}
+.chat-baricon:hover{
+    color: red;
+}
+
+.md-36 {
+    font-size: 36px !important;
+  }
+
+.post-button{
+    background-color: #3D3CE7;
+    color: white;
+    width: 5%;
+    font-size: 18px;
+    height: 50px;
+    border-radius: 10px;
+    position: absolute;
+    top: 2%;
+    left: 95%;
+    transform: translateX(-80%);
+}
+.post-button:hover{
+    background-color: #3c3ce7e0;
+}
+
+
+.fa-heart{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    color: black;
+}
+
+.fa-heart:hover{
+    color: red;
+}
+
+
+
+
