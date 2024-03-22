@@ -55,7 +55,7 @@ html, body {
     display: inline-block;
     text-decoration: none;
     position: absolute;
-    top: 2.5%;
+    top: 0%;
     left: 80%;
 }
 
@@ -136,7 +136,7 @@ a.brand:hover{
     width: 100%;
     max-width: 36px;
     position: absolute;
-    top: 2.5%;
+    top: 0%;
     left: 75%;
     transform: translateX(-75%);
 }
@@ -149,6 +149,15 @@ a.brand:hover{
     left: 78%;
     transform: translateX(-80%);
 }
+
+.chat-baricon:hover{
+    color: red;
+}
+
+.md-36 {
+    font-size: 36px !important;
+  }
+
 
 .post-button{
     background-color: #3D3CE7;
@@ -281,6 +290,11 @@ a.brand:hover{
     font-size: 16px;
     
 }
+.chat-seller:hover{
+    color: red;
+    
+    
+}
 
 .chat-baricon1{
     width: 100%;
@@ -311,4 +325,8 @@ a.brand:hover{
     text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
     padding-right: 10px;
     
+}
+
+.fa-product{
+    top: 18px
 }
