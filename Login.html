@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meow Meow</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   
     <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Login.css">
 </head>
@@ -17,7 +16,7 @@
         <!---ฝั่งซ้าย-->
         <div class="left-box">
             <div class="left-box-info">
-                <img src="https://cdn.discordapp.com/attachments/836153004138168330/1164238912177311784/ff7b2d1d-b1d3-4358-b67a-a9f6e09f087c-removebg-preview.png?ex=65427cfb&is=653007fb&hm=7e9ae95426244035eb4d435c51964111f34ae5034c61038e54904a4b03335bd5&"
+                <img src="image/Meow.png"
             alt="meowmeow">
                 <h3>
                     Meow Meow
@@ -33,25 +32,112 @@
         <!---ฝั่งขวา-->
         <div class="right-box">
             <div class="right-box-info">
-                <form action="buysell.html">
+                <div class="contrainer">
                     <h4>เข้าสู่ระบบ</h4>
                     <div class="form-control">
-                        <input type="email" placeholder="อีเมลอีเมล">
+                        <input name="email" type="email" placeholder="อีเมลอีเมล" id="email">
                     </div>
                     <div class="form-control">
-                        <input type="password" placeholder="รหัสผ่าน">
+                        <input name="password" type="password" placeholder="รหัสผ่าน" id="password">
                     </div>
-
-                    <a href="buysell.html"><button type="submit">เข้าสู่ระบบ</button></a>
+                    <div class="message" id="message"></div>
+                    <button onclick="login()">เข้าสู่ระบบ</button>
 
                     <div class="form-text">
                         <span>อะจ๊ะเอ๋ตัวเองพึ่งเข้ามาใหม่ละสิ <a href="register.html" class="span-register">สมัครสมาชิก </a> ที่นี่</span>
                     </div>
 
-                </form>
+            </div>
             </div>
         </div>
         
     </main>    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="login.js"></script>  
+    
+    <!-- <script>
+        const validateData = (userData) => {
+            let errors = []
+
+            if (!emailDOM.value) {
+                errors.push('กรุณากรอกอีเมล')
+            }
+            if (!passwordDOM.value) {
+                errors.push('กรุณากรอกรหัสผ่าน')
+            }
+            
+            return errors
+        }
+        
+        const login = async () => {
+            try {
+                let emailDOM = document.querySelector('input[name=email]') 
+                let passwordDOM = document.querySelector('input[name=password]') 
+                let messageDOM = document.getElementById('message')
+
+                let userData = {
+                    email: emailDOM.value,
+                    password: passwordDOM.value
+                }
+                
+                console.log('userdata', userData)
+                const errors = validateData(userData)
+                console.log('errors', errors)
+                if (errors.length > 0) {
+                    throw {
+                        message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                        errors: errors
+                    }
+                }
+
+                const response = await axios.post('http://localhost:8000/login', userData)
+                console.log(response.data)
+                messageDOM.innerText = 'เข้าสู่ระบบเรียบร้อย'
+                messageDOM.className = 'message success'
+            } catch (error) {
+                
+                console.log('error: ', error)
+                messageDOM.innerText = error.message
+                messageDOM.className = 'message danger'
+        }
+}
+
+        // const login = async () => {
+        //     try {
+        //         const emailDOM = document.querySelector('input[name=email]')
+        //         const passwordDOM = document.querySelector('input[name=password]')
+        //         const messageDOM = document.getElementById('message')
+        //         console.log(emailDOM, passwordDOM)
+        //         let userData = {
+        //             email: emailDOM.value,
+        //             password: passwordDOM.value
+        //         }
+        //         const response = await axios.post('http://localhost:8000/login', userData)
+        //         console.log(response.data)
+       
+        //         console.log('userdata', response.data.message)
+
+        //         const errors = validateData(userData)
+
+        //         if (errors.length > 0){
+        //             throw{
+        //                 message: 'กรอกข้อมูลไม่ครบ',
+        //                 errors: errors
+        //             }
+        //         }
+        //         console.log('error: ', errors)
+        //         messageDOM.innerText = 'เข้าสู่ระบบเรียบร้อย'
+        //         messageDOM.className = 'message success'
+        //     } catch (error) {
+        //         console.log('error: ', error.response.data.message)
+        //         messageDOM.innerText = 'อีเมลหรือรหัสผ่านผิด'
+        //         messageDOM.className = 'message danger'
+        //     }
+            
+                
+            
+        // }
+        
+    </script> -->
 </body>
 </html>

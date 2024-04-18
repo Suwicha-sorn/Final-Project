@@ -17,7 +17,7 @@
         <!---ฝั่งซ้าย-->
         <div class="left-box">
             <div class="left-box-info">
-                <img src="https://cdn.discordapp.com/attachments/836153004138168330/1164238912177311784/ff7b2d1d-b1d3-4358-b67a-a9f6e09f087c-removebg-preview.png?ex=65427cfb&is=653007fb&hm=7e9ae95426244035eb4d435c51964111f34ae5034c61038e54904a4b03335bd5&"
+                <img src="image/Meow.png"
             alt="meowmeow">
                 <h3>
                     Meow Meow
@@ -33,28 +33,30 @@
         <!---ฝั่งขวา-->
         <div class="right-box">
             <div class="right-box-info">
-                <form action="Login.html">
+                <div class="contrainer">
                     <h4>สมัครสมาชิก</h4>
                     <div class="form-control">
-                        <input type="email" placeholder="อีเมลอีเมล">
+                        <input name="email" type="email" placeholder="อีเมลอีเมล">
                     </div>
                     <div class="form-control">
-                        <input type="password" placeholder="รหัสผ่าน">
+                        <input name="password" type="password" placeholder="รหัสผ่าน">
                     </div>
                     <div class="form-control">
-                        <input type="text" placeholder="เบอร์โทรศัพท์">
+                        <input name="phone" type="text" placeholder="เบอร์โทรศัพท์">
                     </div>
-
-                    <button type="submit">สมัครสมาชิก</button>
+                    <div class="message"></div>
+                    <button onclick="register()">สมัครสมาชิก</button>
 
                     <div class="form-text">
                         <span>อะจ๊ะเอ๋ตัวเองมีบัญชีแล้วละสิ <a href="Login.html" class="span-login">เข้าสู่ระบบ</a> ที่นี่</span>
                     </div>
+                </div>
 
-                </form>
             </div>
         </div>
         
-    </main>    
+    </main>   
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+    <script src="register.js"></script> 
 </body>
 </html>
