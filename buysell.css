@@ -35,6 +35,7 @@ html, body {
     width: 180px;
     float: left;
     margin-top: -20px;
+    padding: 10px;
 }
 
 .top-header {
@@ -47,8 +48,13 @@ html, body {
     display: inline-block;
     text-decoration: none;
     margin: 5px;    
-    margin-left: 70px;                             
+    margin-left: 70px;                       
 }
+.header.top-header img {
+    width: 180px;
+    height: 128px;
+}
+
 .menu-item {
     color: #000000;
     padding: 15px;
@@ -59,19 +65,21 @@ html, body {
     left: 80%;
 }
 
-a:hover {
-    color: white;
+a {
+    cursor: pointer;
+    text-decoration: none;
 }
-
 
 .brand {
     display: inline-block;
     font-size: 48px;
     font-weight: 500;
+    margin-top: 10px;
     color: #E67877;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     text-decoration: none;
     font-family: 'Modak', cursive
+    
 }
 
 a.brand:hover{
@@ -138,6 +146,7 @@ a.brand:hover{
     position: absolute;
     top: 0%;
     left: 75%;
+    color: #3D3CE7;
     transform: translateX(-75%);
 }
 
@@ -147,6 +156,7 @@ a.brand:hover{
     position: absolute;
     top: 3%;
     left: 78%;
+    color: #3D3CE7;
     transform: translateX(-80%);
 }
 
@@ -170,6 +180,96 @@ a.brand:hover{
     top: 2%;
     left: 95%;
     transform: translateX(-80%);
+}
+
+.username-user{
+    font-weight: bold;
+    color: #000;
+    margin-left: 10px;
+}
+/* Header dropdown */
+.right-photo-user {
+    width: 80px !important;
+    height: 70px !important;
+    border-radius: 50%;
+    padding: 20px;
+    position: absolute;
+    left: -5%;
+    transform: translateX(-40%);
+}
+
+
+.navbar {
+    background-color: #F9D390;
+    border-radius: 7px;
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(0, 0, 0, 0.24);
+    position: absolute;
+    top: -1%;
+    left: 90%;
+    transform: translateX(-90%);
+    width: 200px;
+    z-index: 1000;
+  }
+    ul {
+    display: flex;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    position: relative;
+  }
+  li a {
+    padding: 20px 30px;
+    color: #000000;
+  }
+  li a i {
+    margin-left: 5px;
+    font-size: 12px;
+    transition: 0.4s;
+  }
+  li:hover {
+    background-color: #f9f9f9;
+    width: 150px;
+  }
+  .dropdown {
+    position: absolute;
+    display: block;
+    background-color: #fff;
+    top: 120%;
+    opacity: 0;
+    visibility: hidden;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: 0.3s;
+    left: 0;
+    width: 200px;
+    
+  }
+  .dropdown-link a {
+    text-decoration: none; /* ลบเส้นใต้ในลิงก์ของเมนู dropdown */
+  }
+  
+  .dropdown-link:hover .dropdown {
+    top: 105%;
+    opacity: 1;
+    visibility: visible;
+  }
+  .dropdown-link:hover a i {
+    transform: rotate(-180deg);
+  }
+
+  /*left bar*/
+  .what-page{
+    padding: 0;
+    position: relative;
+    left: -10%;
+    top: -10%;
+}
+
+.img-left{
+    max-width: 600px;
+    width: 600px;
 }
 
 /*left bar*/
@@ -229,6 +329,9 @@ a.brand:hover{
     border: 1px solid #000000;
     border-radius: 10px;
     background-color: #F9D390;
+    width: 300px;
+    height: 350px;
+    
 }
 
 .products-item:hover{
@@ -241,23 +344,25 @@ a.brand:hover{
     position: absolute;
     top: 5%;
     right: 5%;
+    color: #3D3CE7;
 }
 
 .fa-heart:hover{
     color: red;
 }
 
-.products-img img{
+img{
     width: 100%;
-    height: 100%;
-    max-width: 400px;
-    max-height: 250px;
+    height: 50%;
+    max-width: 100%;
     border-radius: 10px;
+    
 }
 
 .products-breed{
     padding: 0.5rem;
     font-weight: bold;
+    color: #000;
 }
 
 .products-address{
@@ -268,6 +373,7 @@ a.brand:hover{
 .products-price{
     padding: 0.5rem;
     font-weight: bold;
+    color: #000;
 }
 
 .space-main{

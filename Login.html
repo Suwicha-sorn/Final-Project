@@ -36,7 +36,7 @@
                     <h4>เข้าสู่ระบบ</h4>
                     <div class="form-control">
                         <input name="email" type="email" placeholder="อีเมลอีเมล" id="email">
-                    </div>
+                     </div>
                     <div class="form-control">
                         <input name="password" type="password" placeholder="รหัสผ่าน" id="password">
                     </div>
@@ -55,89 +55,5 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="login.js"></script>  
     
-    <!-- <script>
-        const validateData = (userData) => {
-            let errors = []
-
-            if (!emailDOM.value) {
-                errors.push('กรุณากรอกอีเมล')
-            }
-            if (!passwordDOM.value) {
-                errors.push('กรุณากรอกรหัสผ่าน')
-            }
-            
-            return errors
-        }
-        
-        const login = async () => {
-            try {
-                let emailDOM = document.querySelector('input[name=email]') 
-                let passwordDOM = document.querySelector('input[name=password]') 
-                let messageDOM = document.getElementById('message')
-
-                let userData = {
-                    email: emailDOM.value,
-                    password: passwordDOM.value
-                }
-                
-                console.log('userdata', userData)
-                const errors = validateData(userData)
-                console.log('errors', errors)
-                if (errors.length > 0) {
-                    throw {
-                        message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
-                        errors: errors
-                    }
-                }
-
-                const response = await axios.post('http://localhost:8000/login', userData)
-                console.log(response.data)
-                messageDOM.innerText = 'เข้าสู่ระบบเรียบร้อย'
-                messageDOM.className = 'message success'
-            } catch (error) {
-                
-                console.log('error: ', error)
-                messageDOM.innerText = error.message
-                messageDOM.className = 'message danger'
-        }
-}
-
-        // const login = async () => {
-        //     try {
-        //         const emailDOM = document.querySelector('input[name=email]')
-        //         const passwordDOM = document.querySelector('input[name=password]')
-        //         const messageDOM = document.getElementById('message')
-        //         console.log(emailDOM, passwordDOM)
-        //         let userData = {
-        //             email: emailDOM.value,
-        //             password: passwordDOM.value
-        //         }
-        //         const response = await axios.post('http://localhost:8000/login', userData)
-        //         console.log(response.data)
-       
-        //         console.log('userdata', response.data.message)
-
-        //         const errors = validateData(userData)
-
-        //         if (errors.length > 0){
-        //             throw{
-        //                 message: 'กรอกข้อมูลไม่ครบ',
-        //                 errors: errors
-        //             }
-        //         }
-        //         console.log('error: ', errors)
-        //         messageDOM.innerText = 'เข้าสู่ระบบเรียบร้อย'
-        //         messageDOM.className = 'message success'
-        //     } catch (error) {
-        //         console.log('error: ', error.response.data.message)
-        //         messageDOM.innerText = 'อีเมลหรือรหัสผ่านผิด'
-        //         messageDOM.className = 'message danger'
-        //     }
-            
-                
-            
-        // }
-        
-    </script> -->
 </body>
 </html>

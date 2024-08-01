@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Post</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="post.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://kit.fontawesome.com/052fd7422a.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="grid">
         <header class="page-header ">
-            <img src="https://cdn.discordapp.com/attachments/836153004138168330/1164238912177311784/ff7b2d1d-b1d3-4358-b67a-a9f6e09f087c-removebg-preview.png?ex=654bb77b&is=6539427b&hm=101377235c32050e42d777212ab02035623c0ed5a3e25ac6fe5b3bdd3f7902d7&" alt="meowmeow">
+            <img class="top" src="image/Meow.png" alt="meowmeow">
             <a class="brand" href="buysell.html">Meow Meow</a>
-            <a href="favor.html" class="favour-bar"><img class="favour-baricon" alt="favour" src="https://cdn.discordapp.com/attachments/836153004138168330/1165284166628294726/211754_heart_icon.png?ex=65464a73&is=6533d573&hm=c250e07b8ba05453bc50a866f77b2c8a35cc6a0d551749e07dd43298a6917987&"/></a>
-            <a href="#" class="chat-bar"><img class="chat-baricon" alt="chatbar" src="https://cdn.discordapp.com/attachments/836153004138168330/1165577784240902154/conversation.png?ex=65475be7&is=6534e6e7&hm=9002378b676fbf3449eb17337135386a56132ad93bf95a95449fd56d5d75fe5e&"/></a>
-            <img class="right-photo-user"src="https://cdn.discordapp.com/attachments/836153004138168330/1109597750162620616/khao-manee-cat-behind-the-couch_New-Africa_Shutterstock.jpg?ex=654ff5ee&is=653d80ee&hm=6706ff180058abb20cc6a79045b20f04c9ca2ab1650dd55e0f1eee0d881a6174&" alt="photo-user">
+            <a href="favor.html" class="favour-bar "><i class="fa-regular fa-heart favour-baricon fa-2xl"></i></a>
+            <a href="#" class="chat-bar"><i class="material-symbols-outlined chat-baricon md-36">chat</i></a>
             <div class="navbar">
-                <ul>
-                  <li class="dropdown-link">
+              <ul>
+                <li class="dropdown-link">
+                    <img  class="right-photo-user"src="image/Meow.png" alt="photo-user">
                     <a href="">Khao Manee
                       <i class="fas fa-chevron-down"></i>
                     </a>
@@ -49,31 +50,41 @@
         </header>
         <div class="page-leftbar ">
             <h3>โพสต์</h3>
+            <ul>
+              <li><a class="active" href="post.html">ซื้อขาย</a></li>
+              <li><a href="post-findhome.html">หาบ้าน</a></li>
+              <li><a href="post-datting.html">หาคู่</a></li>
+            </ul>
             <h5 >พันธ์แมว</h5>
-            <input class="box" type="type">
+            <input class="box" type="type" name="breed" placeholder="พันธ์แมว เช่น เปอร์เชีย">
+            <h5 >ราคา</h5>
+            <input class="box" type="type" name="price" placeholder="ราคา เช่น 2,500 บาท">
             <h5 >เพศ</h5>
-            <input type="radio" id="male" name="radio-gender" value="male">
-            <label for="male">ชาย</label>
-            <input type="radio" id="female" name="radio-gender" value="female">
-            <label for="female">หญิง</label>
+            <input type="radio" id="male" value="ตัวผู้" name="gender">
+            <label for="male">ตัวผู้</label>
+            <input type="radio" id="female" value="ตัวเมีย" name="gender">
+            <label for="female">ตัวเมีย</label>
             <h5 >อายุ</h5>
-            <input class="box" type="number">
+            <input class="box" type="text" name="age" placeholder="อายุ เช่น 1 ปี, 1 เดือน">
             <h5 >วัคซีน</h5>
-            <input class="box" type="text"><br>
-            <a href="manage.html"><button class="button-post">ลงโพสต์</button></a>
+            <input class="box" type="text" name="vaccine" placeholder="วัคซีน เช่น ครบ, 2เข็ม"><br>
+            <button class="button-post" onclick="post_buysell()">ลงโพสต์</button></a>
+            <div class="message" id="message"></div>
             
         </div>
         <div class="page-main ">
             <h5 class="posit" >ที่อยู่</h5><br>
-            <textarea class="box-text posit" name="address" id="address"></textarea><br>
+            <textarea class="box-text posit" name="address" id="address" placeholder="ระบุจังหวัด อำเภอ เช่น ปทุมธานี สามโคก"></textarea><br>
             <h5 class="posit" >รายระเอียด</h5><br>
-            <textarea class="box-text posit" name="description" id="description"></textarea><br>
+            <textarea class="box-text posit" name="details" id="description" placeholder="ระบุข้อมูลเพิ่มเติม เช่น สี วันเกิด ติดต่อ"></textarea><br>
             <h5 class="posit" >รูปภาพแมว</h5><br>
-            <label class="posit" for="myfile">เลือกรูปภาพ:</label>
-            <input class="posit" type="file" id="myfile" name="myfile"><br><br>
-            <div class="posit" >ใส่ได้ไม่เกิน 1 รูป</div>
-        </div>
+            <input class="posit box" type="text" id="fileUpload" placeholder="ลิงค์รูปภาพ"><br><br>
+            <div class="posit" >ใส่ลิงค์รูปภาพ ใส่ได้ไม่เกิน 1 รูป </div>
+        </div> 
         
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="post.js"></script>  
 </body>
 </html>

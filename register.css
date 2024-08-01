@@ -125,11 +125,11 @@ main{
     display: none;
   }
 
-.message danger{
+.message.danger{
     background-color: red;
     display: block;
 }
-.message success{
+.message.success{
     background-color: lightgreen;
     display: block;
 }

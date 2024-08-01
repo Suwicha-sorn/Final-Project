@@ -17,11 +17,38 @@
                 </span>
                 <a href="favor.html" class="favour-bar "><i class="fa-regular fa-heart favour-baricon fa-2xl"></i></a>
                 <a href="#" class="chat-bar"><i class="material-symbols-outlined chat-baricon md-36">chat</i></a>
-                <a class="menu-item" href="Login.html">เข้าสู่ระบบ/สมัครมาชิก</a>
+                <div class="navbar">
+                    <ul>
+                      <li class="dropdown-link">
+                        <img  class="right-photo-user"src="image/Meow.png" alt="photo-user">
+                        <a class="username-user" href="profile.html" id="loggedInUser">
+                          <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown">
+                          <li><a href="manage.html">
+                              จัดการโพส
+                            </a></li>
+                          <li><a href="#">
+                              แชท
+                            </a></li>
+                          <li><a href="favor.html">
+                              รายการโปรด
+                            </a></li>
+                          <li><a href="profile.html">
+                              แก้ไขข้อมูลส่วนตัว
+                            </a></li>
+                          <li><a href="home.html">
+                              ออกจากระบบ
+                            </a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                  
             </div>
-            <footer class="footer">
+            <!-- <footer class="footer">
                 <h3> 1  2  3  4  5</h3>
-            </footer>
+            </footer> -->
             <div class="leftber">
                 <h3 class="head font"> Meow Meow/ซื้อขาย</h3>
                 <a class="button2 font" href="buysell.html">ซื้อขายแมว </a>
@@ -29,14 +56,15 @@
                 <a class="button4 font" href="findhouse.html">หาบ้านให้แมว</a>
             </div>
             <div class="main">
+                <!-- สินค้า -->
                 <div class="products-con">
-                    <div class="products-item">
+                    <!-- <div class="products-item">
                         <div class="products-farvor">
                             <i class="fa-regular fa-heart fa-product fa-2xl"></i>
                         </div>
-                        <div class="products-img">
+                        <img class="products-img" src="https://i.imgur.com/PQj3x0X.jpg" alt="แมว.png">
                             <a href="info-buysell.html"></a>
-                        </div>
+                        </img>
                         <div class="products-breed">
                             Khao Manee
                         </div>
@@ -50,187 +78,11 @@
                             <a><button class="chat-seller space-main">แชท</button></a>
                             <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
                         </div>
-                    </div>
-
-                    <div class="products-item">
-                        <div class="products-farvor">
-                            <i class="fa-regular fa-heart fa-product fa-2xl"></i>
-                        </div>
-                        <div class="products-img">
-                            <a href="info-buysell.html"></a>
-                        </div>
-                        <div class="products-breed">
-                            British Shorthair
-                        </div>
-                        <div class="products-address">
-                            ปทุมธานี
-                        </div>
-                        <div class="products-price">
-                            45,000 บาท
-                        </div>
-                        <div class="products-button">
-                            <a><button class="chat-seller space-main">แชท</button></a>
-                            <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
-                        </div>
-                    </div>
-
-                    <div class="products-item">
-                        <div class="products-farvor">
-                            <i class="fa-regular fa-heart fa-product fa-2xl"></i>
-                        </div>
-                        <div class="products-img">
-                            <a href="info-buysell.html"></a>
-                        </div>
-                        <div class="products-breed">
-                            Munchkin
-                        </div>
-                        <div class="products-address">
-                            ปทุมธานี
-                        </div>
-                        <div class="products-price">
-                            20,000 บาท
-                        </div>
-                        <div class="products-button">
-                            <a><button class="chat-seller space-main">แชท</button></a>
-                            <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
-                        </div>
-                    </div>
-
-                    <div class="products-item">
-                        <div class="products-farvor">
-                            <i class="fa-regular fa-heart fa-product fa-2xl"></i>
-                        </div>
-                        <div class="products-img">
-                            <a href="info-buysell.html"></a>
-                        </div>
-                        <div class="products-breed">
-                            American Shorthair
-                        </div>
-                        <div class="products-address">
-                            ปทุมธานี
-                        </div>
-                        <div class="products-price">
-                            100,000 บาท
-                        </div>
-                        <div class="products-button">
-                            <a><button class="chat-seller space-main">แชท</button></a>
-                            <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
-                        </div>
-                    </div>
-
-                    <div class="products-item">
-                        <div class="products-farvor">
-                            <i class="fa-regular fa-heart fa-product fa-2xl"></i>
-                        </div>
-                        <div class="products-img">
-                            <a href="info-buysell.html"></a>
-                        </div>
-                        <div class="products-breed">
-                            Ragdoll
-                        </div>
-                        <div class="products-address">
-                            ปทุมธานี
-                        </div>
-                        <div class="products-price">
-                            12,000 บาท
-                        </div>
-                        <div class="products-button">
-                            <a><button class="chat-seller space-main">แชท</button></a>
-                            <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
-                        </div>
-                    </div>
-
-                    <div class="products-item">
-                        <div class="products-farvor">
-                            <i class="fa-regular fa-heart fa-product fa-2xl"></i>
-                        </div>
-                        <div class="products-img">
-                            <a href="info-buysell.html"></a>
-                        </div>
-                        <div class="products-breed">
-                            Munchkin
-                        </div>
-                        <div class="products-address">
-                            ปทุมธานี
-                        </div>
-                        <div class="products-price">
-                            5,000 บาท
-                        </div>
-                        <div class="products-button">
-                            <a><button class="chat-seller space-main">แชท</button></a>
-                            <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
-                        </div>
-                    </div>
-
-                    <div class="products-item">
-                        <div class="products-farvor">
-                            <i class="fa-regular fa-heart fa-product fa-2xl"></i>
-                        </div>
-                        <div class="products-img">
-                            <a href="info-buysell.html"></a>
-                        </div>
-                        <div class="products-breed">
-                            American Shorthair
-                        </div>
-                        <div class="products-address">
-                            ปทุมธานี
-                        </div>
-                        <div class="products-price">
-                            50,000 บาท
-                        </div>
-                        <div class="products-button">
-                            <a><button class="chat-seller space-main">แชท</button></a>
-                            <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
-                        </div>
-                    </div>
-
-                    <div class="products-item">
-                        <div class="products-farvor">
-                            <i class="fa-regular fa-heart fa-product fa-2xl"></i>
-                        </div>
-                        <div class="products-img">
-                            <a href="info-buysell.html"></a>
-                        </div>
-                        <div class="products-breed">
-                            Persian
-                        </div>
-                        <div class="products-address">
-                            ปทุมธานี
-                        </div>
-                        <div class="products-price">
-                            3,000 บาท
-                        </div>
-                        <div class="products-button">
-                            <a><button class="chat-seller space-main">แชท</button></a>
-                            <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
-                        </div>
-                    </div>
-
-                    <div class="products-item">
-                        <div class="products-farvor">
-                            <i class="fa-regular fa-heart fa-product fa-2xl"></i>
-                        </div>
-                        <div class="products-img">
-                            <a href="info-buysell.html"></a>
-                        </div>
-                        <div class="products-breed">
-                            Exotic Shorthair
-                        </div>
-                        <div class="products-address">
-                            ปทุมธานี
-                        </div>
-                        <div class="products-price">
-                            35,000 บาท
-                        </div>
-                        <div class="products-button">
-                            <a><button class="chat-seller space-main">แชท</button></a>
-                            <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
-        
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
         <script src="buysell.js"></script> 
     </body>
 </html>

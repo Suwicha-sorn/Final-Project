@@ -48,7 +48,6 @@ window.onload = async () => {
 
     }
 
-    // 2. เราจะนำข้อมูล user กลับใส่เข้าไปใน input html
   }
 }
 

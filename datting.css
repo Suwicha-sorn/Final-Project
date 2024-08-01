@@ -16,10 +16,6 @@ html, body {
     padding: 0;
 }
 
-* a{
-    text-decoration: none;
-}
-
 .header {
     grid-area: header;
 }
@@ -39,6 +35,7 @@ html, body {
     width: 180px;
     float: left;
     margin-top: -20px;
+    padding: 10px;
 }
 
 .top-header {
@@ -51,31 +48,38 @@ html, body {
     display: inline-block;
     text-decoration: none;
     margin: 5px;    
-    margin-left: 70px;                             
+    margin-left: 70px;                       
 }
+.header.top-header img {
+    width: 180px;
+    height: 128px;
+}
+
 .menu-item {
     color: #000000;
     padding: 15px;
     display: inline-block;
     text-decoration: none;
     position: absolute;
-    top: 2.5%;
+    top: 0%;
     left: 80%;
 }
 
-a:hover {
-    color: white;
+a {
+    cursor: pointer;
+    text-decoration: none;
 }
-
 
 .brand {
     display: inline-block;
     font-size: 48px;
     font-weight: 500;
+    margin-top: 10px;
     color: #E67877;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     text-decoration: none;
     font-family: 'Modak', cursive
+    
 }
 
 a.brand:hover{
@@ -140,8 +144,9 @@ a.brand:hover{
     width: 100%;
     max-width: 36px;
     position: absolute;
-    top: 2.5%;
+    top: 0%;
     left: 75%;
+    color: #3D3CE7;
     transform: translateX(-75%);
 }
 
@@ -151,18 +156,18 @@ a.brand:hover{
     position: absolute;
     top: 3%;
     left: 78%;
+    color: #3D3CE7;
     transform: translateX(-80%);
 }
 
-.right-photo-user{
-    width: 60px;
-    border-radius: 50%;
-    padding: 20px;
-    position: absolute;
-    top: 1%;
-    left: 80%;
-    transform: translateX(-40%);
+.chat-baricon:hover{
+    color: red;
 }
+
+.md-36 {
+    font-size: 36px !important;
+  }
+
 
 .post-button{
     background-color: #3D3CE7;
@@ -178,6 +183,17 @@ a.brand:hover{
 }
 
 /* Header dropdown */
+.right-photo-user {
+    width: 80px !important;
+    height: 70px !important;
+    border-radius: 50%;
+    padding: 20px;
+    position: absolute;
+    left: -5%;
+    transform: translateX(-40%);
+}
+
+
 .navbar {
     background-color: #F9D390;
     border-radius: 7px;
@@ -187,6 +203,7 @@ a.brand:hover{
     left: 90%;
     transform: translateX(-90%);
     width: 200px;
+    z-index: 1000;
   }
     ul {
     display: flex;
@@ -221,7 +238,12 @@ a.brand:hover{
     transition: 0.3s;
     left: 0;
     width: 200px;
+    
   }
+  .dropdown-link a {
+    text-decoration: none; /* ลบเส้นใต้ในลิงก์ของเมนู dropdown */
+  }
+  
   .dropdown-link:hover .dropdown {
     top: 105%;
     opacity: 1;
@@ -230,6 +252,19 @@ a.brand:hover{
   .dropdown-link:hover a i {
     transform: rotate(-180deg);
   }
+
+  /*left bar*/
+  .what-page{
+    padding: 0;
+    position: relative;
+    left: -10%;
+    top: -10%;
+}
+
+.img-left{
+    max-width: 600px;
+    width: 600px;
+}
 
 /*left bar*/
 .button2 {
@@ -288,6 +323,9 @@ a.brand:hover{
     border: 1px solid #000000;
     border-radius: 10px;
     background-color: #F9D390;
+    width: 300px;
+    height: 350px;
+    
 }
 
 .products-item:hover{
@@ -295,27 +333,30 @@ a.brand:hover{
     border: 5px solid #3D3CE7;
 }
 
+
 .fa-heart{
     position: absolute;
     top: 5%;
     right: 5%;
+    color: #3D3CE7;
 }
 
 .fa-heart:hover{
     color: red;
 }
 
-.products-img img{
+img{
     width: 100%;
-    height: 100%;
-    max-width: 400px;
-    max-height: 250px;
+    height: 50%;
+    max-width: 100%;
     border-radius: 10px;
+    
 }
 
 .products-breed{
     padding: 0.5rem;
     font-weight: bold;
+    color: #000;
 }
 
 .products-address{
@@ -326,6 +367,7 @@ a.brand:hover{
 .products-price{
     padding: 0.5rem;
     font-weight: bold;
+    color: #000;
 }
 
 .space-main{
@@ -346,6 +388,11 @@ a.brand:hover{
     padding-left: 30px;
     padding-right: 30px;
     font-size: 16px;
+    
+}
+.chat-seller:hover{
+    color: red;
+    
     
 }
 
@@ -378,4 +425,8 @@ a.brand:hover{
     text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
     padding-right: 10px;
     
+}
+
+.fa-product{
+    top: 18px
 }

@@ -61,33 +61,33 @@ body{
 
         
 
-        .favour-baricon{
+         .favour-baricon{
             width: 100%;
             max-width: 36px;
             position: absolute;
-            top: 4%;
+            top: 5%;
             left: 75%;
+            color: #3D3CE7;
             transform: translateX(-75%);
         }
-
+        
         .chat-baricon{
             width: 100%;
             max-width: 28px;
             position: absolute;
-            top: 4.5%;
+            top: 3%;
             left: 78%;
+            color: #3D3CE7;
             transform: translateX(-80%);
         }
-
-        .right-photo-user{
-            width: 100px;
-            border-radius: 50%;
-            padding: 20px;
-            position: absolute;
-            top: 2%;
-            left: 80%;
-            transform: translateX(-40%);
+        
+        .chat-baricon:hover{
+            color: red;
         }
+        
+        .md-36 {
+            font-size: 36px !important;
+          }
 
         & button{
             background-color: #3D3CE7;
@@ -183,6 +183,10 @@ a {
     outline: none;
 }
 
+.navbar-container {
+    margin: 20px;
+}
+
 .navbar-container ul {
     margin: 0;
     padding: 0;
@@ -235,4 +239,138 @@ a {
 .navbar-container ul li:active .underline {
     transition: none;
     background-color: rgba(255, 255, 255, 0.76);
+}
+
+/* Header dropdown */
+.right-photo-user {
+    width: 117px !important;
+    height: 110px !important;
+    border-radius: 50%;
+    padding: 20px;
+    position: absolute;
+    left: -5%;
+    transform: translateX(-40%);
+}
+
+
+/*main bar*/
+
+.products-con{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-top: 5%;
+}
+
+.products-item{
+    position: relative;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: #F9D390;
+    width: 300px;
+    height: 350px;
+    
+}
+
+.products-item:hover{
+    transition: 0.3s;
+    border: 5px solid #3D3CE7;
+}
+
+
+.fa-heart{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    color: #3D3CE7;
+}
+
+.fa-heart:hover{
+    color: red;
+}
+
+img{
+    width: 100%;
+    height: 50%;
+    max-width: 100%;
+    border-radius: 10px;
+    
+}
+
+.products-breed{
+    padding: 0.5rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.products-address{
+    padding: 0.5rem;
+    color: #8A8A8A;
+}
+
+.products-price{
+    padding: 0.5rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.space-main{
+    margin: 0.5rem;
+}
+
+.products-button{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.chat-seller{
+    color: #000000;
+    background-color: white;
+    border-radius: 10px;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 16px;
+    
+}
+.chat-seller:hover{
+    color: red;
+    
+    
+}
+
+.chat-baricon1{
+    width: 100%;
+    max-width: 20px; 
+    padding-right:10px ;
+    margin-top: -10px;
+    margin-bottom: -5px;
+    
+}
+
+.call{
+    margin-left: 10px;
+    margin-top: 20px;
+    color: #000000;
+    background-color: white;
+    border-radius: 10px;
+    height: 50px;
+    margin-top: 9px;
+    padding-right: 30px;
+    padding-left: 30px;
+    font-size: 16px;
+}
+
+.fa-phone{
+    width: 25%;
+    max-width: 36px; 
+    color: white;
+    text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+    padding-right: 10px;
+    
+}
+
+.fa-product{
+    top: 18px
 }
