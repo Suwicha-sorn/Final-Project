@@ -34,6 +34,23 @@ const validateData = (post_buysell_data) => {
     return errors
 }
 
+async function fetchLoggedInUserData() {
+    try {
+        const authToken = localStorage.getItem('token')
+        const response = await axios.get(`${BASE_URL}/loginuser`, {
+        headers: {
+            'authorization': `Bearer ${authToken}`
+        }
+    });
+    
+    console.log(response.data[0].username)
+    return response.data[0].username
+    
+    } catch (error) {
+            console.error('Error fetching logged in user data:', error);
+        }
+} 
+
 const post_buysell = async () => {
     let breedDOM = document.querySelector('input[name=breed]')
     let priceDOM = document.querySelector('input[name=price]')
@@ -56,7 +73,9 @@ const post_buysell = async () => {
         // formData.append('test', selectedFile)
 
     try {
+        const username = await fetchLoggedInUserData()
         let post_buysell_data = {
+            username: username,
             breed: breedDOM.value,
             price: priceDOM.value,
             gender: genderDOM.value,

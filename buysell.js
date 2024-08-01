@@ -61,7 +61,7 @@ function displayBuysell(products) {
       const productHTML = `
           <a href="info-buysell.html?id=${product.id}">
           <div class="products-farvor">
-              <i class="fa-regular fa-heart fa-product fa-2xl"></i>
+              <i class="fa-regular fa-heart fa-product fa-2xl" id="data_id" ></i>
           </div>
           <img class="products-img" src="${product.img}" alt="แมว.png">
           </img>

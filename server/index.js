@@ -277,6 +277,7 @@ app.post('/post-buysell', async (req, res) =>{
   try {
     const {username, breed, price, gender, age, vaccine, address, details, img} = req.body
     const post_buysell_data = {
+      username,
       breed,
       price,
       gender,
