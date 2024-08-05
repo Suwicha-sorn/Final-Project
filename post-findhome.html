@@ -17,29 +17,26 @@
         <header class="page-header ">
             <img class="top" src="image/Meow.png" alt="meowmeow">
             <a class="brand" href="buysell.html">Meow Meow</a>
-            <a href="favor.html" class="favour-bar "><i class="fa-regular fa-heart favour-baricon fa-2xl"></i></a>
-            <a href="#" class="chat-bar"><i class="material-symbols-outlined chat-baricon md-36">chat</i></a>
+            <a href="favor-buysell.html" class="favour-bar "><i class="fa-regular fa-heart favour-baricon fa-2xl"></i></a>
+            <!-- <a href="#" class="chat-bar"><i class="material-symbols-outlined chat-baricon md-36">chat</i></a> -->
             <div class="navbar">
               <ul>
                 <li class="dropdown-link">
                     <img  class="right-photo-user"src="image/Meow.png" alt="photo-user">
-                    <a href="">Khao Manee
+                    <a class="username-user" href="profile.html" id="loggedInUser">
                       <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul class="dropdown">
                       <li><a href="manage.html">
                         จัดการโพส
                       </a></li>
-                      <li><a href="#">
-                        แชท
-                      </a></li>
-                     <li><a href="favor.html">
+                     <li><a href="favor-buysell.html">
                         รายการโปรด
                       </a></li>
                      <li><a href="profile.html">
                         แก้ไขข้อมูลส่วนตัว
                       </a></li>
-                     <li><a href="buysell.html">
+                     <li><a href="home.html">
                         ออกจากระบบ
                       </a></li>
                     </ul>
@@ -49,11 +46,11 @@
             <a href="post.html"><button>โพสต์</button></a>
         </header>
         <div class="page-leftbar ">
-            <h3>โพสต์</h3>
+            <h3 id="post-edit">โพสต์</h3>
             <ul>
               <li><a href="post.html">ซื้อขาย</a></li>
-              <li><a class="active" href="post-findhome.html">หาบ้าน</a></li>
               <li><a href="post-datting.html">หาคู่</a></li>
+              <li><a class="active" href="post-findhome.html">หาบ้าน</a></li>
             </ul>
             <h5 >พันธ์แมว</h5>
             <input class="box" type="type" name="breed" placeholder="พันธ์แมว เช่น เปอร์เชีย">

@@ -151,7 +151,7 @@ app.post('/login', async (req,res) => {
       return false
     }
     //สร้าง token
-    const token = jwt.sign({email, username: userData.username}, secret, { expiresIn: '1h'})
+    const token = jwt.sign({email, username: userData.username}, secret, { expiresIn: '5h'})
     // console.log("get session", req.sessionID)
     req.session.userId = userData.id
     req.session.user = userData
@@ -196,6 +196,24 @@ app.get('/loginuser', async (req, res) => {
   }
 })
 
+// API select user id
+app.get('/user/:username', async (req, res) => {
+  try {
+    let username = req.params.username
+    const results = await conn.query('SELECT * FROM users WHERE username = ?', [username])
+    
+    res.json({
+      message: 'find user',
+      data: results[0]
+    })
+  } catch (error) {
+    console.log('error', error)
+    res.status(500).json({
+          message: 'something wrong',
+    })
+  }
+})
+
 // API update user
 app.patch('/updateuser/:id', async (req, res) => {
   try {
@@ -220,7 +238,7 @@ app.get('/users', async (req, res) => {
   const results = await conn.query('SELECT * FROM users')
   res.json(results[0])
 })
-                                                                                
+// API delete users                                                                            
 app.delete('/users/:id', async (req, res) =>{
   try{
     let id = req.params.id
@@ -271,6 +289,90 @@ app.get('/posts-buysell/:id', async (req,res) => {
   }
 })
 
+// API to get buy sell posts for the logged-in user
+app.get('/posts-buysell-logged', async (req, res) => {
+  try {
+    let user = req.query.username
+    const results = await conn.query('SELECT * FROM product_buysell WHERE username = ? ORDER BY time_post DESC', [user]);
+    res.json(results[0]);
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ message: 'something wrong', error });
+  }
+});
+
+// API POST favorite buy sell
+app.post('/favorite-buysell', async (req, res) => {
+  try {
+    let {username, product_id, type} = req.body
+
+    // ตรวจสอบก่อนว่ามีสินค้านี้ในรายการโปรดอยู่แล้วหรือไม่
+    const checkResults = await conn.query('SELECT * FROM favorite WHERE product_id = ? AND username = ? AND type = ?', [product_id, username, type])
+
+    if (checkResults[0].length > 0) {
+      await conn.query('DELETE FROM favorite WHERE product_id = ? AND username = ? AND type = ?', [product_id, username, type])
+      return res.status(400).json({ message: 'ลบสินค้าจากรายการโปรดแล้ว'})
+    }
+
+    const results = await conn.query('INSERT INTO favorite (product_id, username, type) VALUES (?, ?, ?)', [product_id, username, type]);
+    res.json({ message: 'เพิ่มสินค้านี้ลงในรายการโปรดแล้ว' })
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ message: 'something wrong', error });
+  }
+})
+
+// API GET favorite buy sell
+app.get('/favorite-buysell', async (req, res) => {
+  try {
+    let user = req.query.username
+    let type = 'buysell'
+    const results = await conn.query('SELECT * FROM product_buysell WHERE id IN (SELECT product_id FROM favorite WHERE username = ? AND type = ?) ORDER BY time_post DESC', [user, type]);
+    res.json(results[0]);
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ message: 'something wrong', error });
+  }
+});
+
+
+// API update post buy sell
+app.patch('/posts-buysell/:id', async (req, res) => {
+  try {
+    let id = req.params.id
+    let updatePost = req.body
+    const results = await conn.query('UPDATE product_buysell SET ? WHERE id = ?', [updatePost, id])
+    res.json({
+      message: 'update ok',
+      data: results[0]
+    })
+  } catch (error) {
+    console.log('error', error)
+    res.status(500).json({
+          message: 'something wrong',
+    })
+  }
+})
+
+// // API manage post /:username buy sell
+// app.get('/posts-buysell/:username', async (req,res) => {
+//   try{
+//     let username = req.params.username
+//     const results = await conn.query('SELECT * from product_buysell WHERE username = ?', username)
+//     if (results[0].length > 0 ){
+//       res.json(results[0][0])
+//       } else {
+//         res.status(404).json({
+//            message: 'หาไม่เจอ'
+//             })
+//           }
+//   } catch (error){
+//     console.error('error message', error.message)
+//     res.status(500).json({
+//       message: 'something wrong',
+//     })
+//   }
+// })
 
 // API Post buy sell
 app.post('/post-buysell', async (req, res) =>{
@@ -344,12 +446,78 @@ app.get('/posts-datting/:id', async (req,res) => {
   }
 })
 
+// API to get datting posts for the logged-in user
+app.get('/posts-datting-logged', async (req, res) => {
+  try {
+    let user = req.query.username
+    const results = await conn.query('SELECT * FROM product_datting WHERE username = ? ORDER BY time_post DESC', [user]);
+    res.json(results[0]);
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ message: 'something wrong', error });
+  }
+});
+
+// API update post datting
+app.patch('/posts-datting/:id', async (req, res) => {
+  try {
+    let id = req.params.id
+    let updatePost = req.body
+    const results = await conn.query('UPDATE product_datting SET ? WHERE id = ?', [updatePost, id])
+    res.json({
+      message: 'update ok',
+      data: results[0]
+    })
+  } catch (error) {
+    console.log('error', error)
+    res.status(500).json({
+          message: 'something wrong',
+    })
+  }
+})
+
+
+// API POST favorite datting
+app.post('/favorite-datting', async (req, res) => {
+  try {
+    let {username, product_id,type} = req.body
+
+    // ตรวจสอบก่อนว่ามีสินค้านี้ในรายการโปรดอยู่แล้วหรือไม่
+    const checkResults = await conn.query('SELECT * FROM favorite WHERE product_id = ? AND username = ? AND type = ?', [product_id, username, type])
+
+    if (checkResults[0].length > 0) {
+      await conn.query('DELETE FROM favorite WHERE product_id = ? AND username = ? AND type = ?', [product_id, username, type])
+      return res.status(400).json({ message: 'ลบสินค้าจากรายการโปรดแล้ว'})
+    }
+
+    const results = await conn.query('INSERT INTO favorite (product_id, username,type) VALUES (?, ?, ?)', [product_id, username, type]);
+    res.json({ message: 'เพิ่มสินค้านี้ลงในรายการโปรดแล้ว' })
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ message: 'something wrong', error });
+  }
+})
+
+// API GET favorite datting
+app.get('/favorite-datting', async (req, res) => {
+  try {
+    let user = req.query.username
+    let type = 'datting'
+    const results = await conn.query('SELECT * FROM product_datting WHERE id IN (SELECT product_id FROM favorite WHERE username = ? AND type = ?) ORDER BY time_post DESC', [user, type]);
+    res.json(results[0]);
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ message: 'something wrong', error });
+  }
+});
+
 
 // API Post datting
 app.post('/post-datting', async (req, res) =>{
   try {
-    const {breed, price, gender, age, vaccine, address, details, img} = req.body
+    const {username, breed, price, gender, age, vaccine, address, details, img} = req.body
     const post_datting_data = {
+      username,
       breed,
       price,
       gender,
@@ -415,11 +583,75 @@ app.get('/posts-findhouse/:id', async (req,res) => {
   }
 })
 
+// API to get findhouse posts for the logged-in user
+app.get('/posts-findhouse-logged', async (req, res) => {
+  try {
+    let user = req.query.username
+    const results = await conn.query('SELECT * FROM product_findhouse WHERE username = ? ORDER BY time_post DESC', [user]);
+    res.json(results[0]);
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ message: 'something wrong', error });
+  }
+});
+
+// API POST favorite findhouse
+app.post('/favorite-findhouse', async (req, res) => {
+  try {
+    let {username, product_id, type} = req.body
+    // ตรวจสอบก่อนว่ามีสินค้านี้ในรายการโปรดอยู่แล้วหรือไม่
+    const checkResults = await conn.query('SELECT * FROM favorite WHERE product_id = ? AND username = ? AND type = ?', [product_id, username, type])
+
+    if (checkResults[0].length > 0) {
+      await conn.query('DELETE FROM favorite WHERE product_id = ? AND username = ? AND type = ?', [product_id, username, type])
+      return res.status(400).json({ message: 'ลบสินค้าจากรายการโปรดแล้ว'})
+    }
+
+    const results = await conn.query('INSERT INTO favorite (product_id, username, type) VALUES (?, ?, ?)', [product_id, username, type]);
+    res.json({ message: 'เพิ่มสินค้านี้ลงในรายการโปรดแล้ว' })
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ message: 'something wrong', error });
+  }
+})
+
+// API GET favorite findhouse
+app.get('/favorite-findhouse', async (req, res) => {
+  try {
+    let user = req.query.username
+    let type = 'findhouse'
+    const results = await conn.query('SELECT * FROM product_findhouse WHERE id IN (SELECT product_id FROM favorite WHERE username = ? AND type = ?) ORDER BY time_post DESC', [user, type]);
+    res.json(results[0]);
+  } catch (error) {
+    console.error('error', error);
+    res.status(500).json({ message: 'something wrong', error });
+  }
+});
+
+// API update post findhouse
+app.patch('/posts-findhouse/:id', async (req, res) => {
+  try {
+    let id = req.params.id
+    let updatePost = req.body
+    const results = await conn.query('UPDATE product_findhouse SET ? WHERE id = ?', [updatePost, id])
+    res.json({
+      message: 'update ok',
+      data: results[0]
+    })
+  } catch (error) {
+    console.log('error', error)
+    res.status(500).json({
+          message: 'something wrong',
+    })
+  }
+})
+
 // API Post findhouse
 app.post('/post-findhouse', async (req, res) =>{
   try {
-    const {breed, gender, age, vaccine, address, details, img} = req.body
+    const {username, breed, gender, age, vaccine, address, details, img} = req.body
     const post_findhouse_data = {
+      username,
       breed,
       gender,
       age,
@@ -511,6 +743,7 @@ app.delete('/post-findhouse/:id', async (req, res) =>{
 //     })
 //   }
 // })
+
 
 app.listen(port, async (req, res ) => {
   await initMySQL()

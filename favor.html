@@ -10,16 +10,17 @@
 </head>
 <body>
     <div class="grid">
-        <header class="page-header ">
-            <img src="image/Meow.png" alt="meowmeow">
+        <div class="header top-header">
+            <img class="header top" src="image/Meow.png">
             <a class="brand" href="buysell.html">Meow Meow</a>
+            <a href="post.html"><button class="post-button">โพสต์</button></a>
             <a href="favor.html" class="favour-bar "><i class="fa-regular fa-heart favour-baricon fa-2xl"></i></a>
-                <a href="#" class="chat-bar"><i class="material-symbols-outlined chat-baricon md-36">chat</i></a>
+            <!-- <a href="#" class="chat-bar"><i class="material-symbols-outlined chat-baricon md-36">chat</i></a> -->
             <div class="navbar">
-              <ul>
-                <li class="dropdown-link">
-                    <img class="right-photo-user"src="image/Meow.png" alt="photo-user">
-                    <a href="profile.html">Khao Manee
+                <ul>
+                  <li class="dropdown-link">
+                    <img  class="right-photo-user"src="image/Meow.png" alt="photo-user">
+                    <a class="username-user" href="profile.html" id="loggedInUser">
                       <i class="fas fa-chevron-down"></i>
                     </a>
                     <ul class="dropdown">
@@ -35,67 +36,67 @@
                       <li><a href="profile.html">
                           แก้ไขข้อมูลส่วนตัว
                         </a></li>
-                      <li><a href="buysell.html">
+                      <li><a href="home.html">
                           ออกจากระบบ
                         </a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
-            <a href="post.html"><button>โพสต์</button></a>
-        </header>
-        <div class="page-main">
+        </div>
+        <!-- <div class="page-main">
+        </div> -->
+        <div class="main">
             <h3>รายการโปรด</h3>
             <!-- navbar -->
             <div class="navbar-container">
                 <ul>
                     <li class="nav-link active-link">
-                        <a href="#">ทั้งหมด</a>
+                        <a href="favor.html">ทั้งหมด</a>
                         <div class="underline"></div>
                     </li>
                     <li class="nav-link">
-                        <a href="#">ซื้อขาย</a>
+                        <a href="favor-buysell.html">ซื้อขาย</a>
                         <div class="underline"></div>
                     </li>
                     <li class="nav-link">
-                        <a href="#">หาคู่ให้แมว</a>
+                        <a href="favor-datting.html">หาคู่ให้แมว</a>
                         <div class="underline"></div>
                     </li>
                     <li class="nav-link">
-                        <a href="#">หาบ้านให้แมว</a>
+                        <a href="favor-findhome.html">หาบ้านให้แมว</a>
                         <div class="underline"></div>
                     </li>
                 </ul>
             </div>
+            <!-- สินค้า -->
+            <div class="products-con">
+                <!-- <div class="products-item">
+                    <div class="products-farvor">
+                        <i class="fa-regular fa-heart fa-product fa-2xl"></i>
+                    </div>
+                    <img class="products-img" src="https://i.imgur.com/PQj3x0X.jpg" alt="แมว.png">
+                        <a href="info-buysell.html"></a>
+                    </img>
+                    <div class="products-breed">
+                        Khao Manee
+                    </div>
+                    <div class="products-address">
+                        ปทุมธานี
+                    </div>
+                    <div class="products-price">
+                        8,000 บาท
+                    </div>
+                    <div class="products-button">
+                        <a><button class="chat-seller space-main">แชท</button></a>
+                        <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
+                    </div>
+                </div> -->
+            </div>
         </div>
     </div>
-    <div class="main">
-      <!-- สินค้า -->
-      <div class="products-con">
-          <!-- <div class="products-item">
-              <div class="products-farvor">
-                  <i class="fa-regular fa-heart fa-product fa-2xl"></i>
-              </div>
-              <img class="products-img" src="https://i.imgur.com/PQj3x0X.jpg" alt="แมว.png">
-                  <a href="info-buysell.html"></a>
-              </img>
-              <div class="products-breed">
-                  Khao Manee
-              </div>
-              <div class="products-address">
-                  ปทุมธานี
-              </div>
-              <div class="products-price">
-                  8,000 บาท
-              </div>
-              <div class="products-button">
-                  <a><button class="chat-seller space-main">แชท</button></a>
-                  <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
-              </div>
-          </div> -->
-      </div>
-  </div>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
-    <script src="favor.js"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+<script src="favor.js"></script> 
 </body>
 </html>

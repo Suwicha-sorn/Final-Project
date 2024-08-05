@@ -27,8 +27,7 @@ const loadData = async () => {
     <div class="products-breed">${product.breed}</div>
     <div class="products-address">${product.address}</div>
     <div class="products-button">
-      <button class="approve space-main">อนุมัติ</button>
-      <button class="reject space-main"  data-id='${product.id}'>ไม่อนุมัติ</button>
+      <button class="reject space-main"  data-id='${product.id}'>ลบโพสต์</button>
     </div>
     </div>
     </a>`
@@ -46,13 +45,16 @@ for (let i = 0; i <rejectDOM.length; i++) {
         const id = event.target.dataset.id
         console.log('event.target: ', event.target.dataset)
         console.log('Clicked reject button with id:', id)
-        try{
-            await axios.delete(`${BASE_URL}/post-findhouse/${id}`) 
-            console.log('Response:', response)
-            fetchBuysell() // recursive function = เรียก function ตัวเอง
-      } catch (error) {
-            console.log('error', error)
-         }
+        const confirmDelete = window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?')
+        if (confirmDelete) {
+          try{
+              await axios.delete(`${BASE_URL}/post-findhouse/${id}`) 
+              console.log('Response:', response)
+              fetchBuysell() // recursive function = เรียก function ตัวเอง
+        } catch (error) {
+              console.log('error', error)
+           }
+        }
      })
   }
 }

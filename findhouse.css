@@ -182,6 +182,12 @@ a.brand:hover{
     transform: translateX(-80%);
 }
 
+.username-user{
+    font-weight: bold;
+    color: #000;
+    margin-left: 10px;
+}
+
 /* Header dropdown */
 .right-photo-user {
     width: 80px !important;
@@ -267,6 +273,10 @@ a.brand:hover{
 }
 
 /*left bar*/
+
+.font-head {
+    font-size: 30px;
+}
 .button2 {
     color: black;
     font: bold;
@@ -322,7 +332,7 @@ a.brand:hover{
     position: relative;
     border: 1px solid #000000;
     border-radius: 10px;
-    background-color: #F9D390;
+    background-color: #7877E6;
     width: 300px;
     height: 350px;
     
@@ -361,7 +371,7 @@ img{
 
 .products-address{
     padding: 0.5rem;
-    color: #8A8A8A;
+    color: #ffffff;
 }
 
 .products-price{
@@ -376,7 +386,7 @@ img{
 
 .products-button{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 
 }
 
@@ -396,7 +406,9 @@ img{
     
     
 }
-
+.call:hover{
+    color: red;
+}
 .chat-baricon1{
     width: 100%;
     max-width: 20px; 

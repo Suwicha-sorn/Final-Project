@@ -31,8 +31,10 @@ h1,h3,h4,p{
 .leftber { 
     grid-area: leftber;
     position: relative;
-    left: 15%;
-    top: 15%;
+    left: 10%;
+    top: 10%;
+    width: 600px;
+    height: 600px;
 }
 .main {
     grid-area: main;
@@ -322,4 +324,10 @@ h1,h3,h4,p{
 
 .detail{
     width: 600px;
+}
+
+.username-user{
+    font-weight: bold;
+    color: #000;
+    margin-left: 10px;
 }

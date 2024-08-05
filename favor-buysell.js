@@ -6,13 +6,14 @@
 const BASE_URL = 'http://localhost:8000'
 
 
+// function phonecall() {
+//     alert("0935987444")
+// }
 
-
-// แสดงข้อมูล
 async function fetchBuysell() {
 	try {
 		const username = await fetchLoggedInUserData()
-		const response = await axios.get(`${BASE_URL}/posts-buysell-logged`, {
+		const response = await axios.get(`${BASE_URL}/favorite-buysell`, {
 			params: { username: username } }); 
 		const products = response.data
   
@@ -46,7 +47,7 @@ async function fetchLoggedInUserData() {
 
 function displayBuysell(products) {
 	const productsContainer = document.querySelector('.products-con')
-	
+  
 	// เคลียร์ข้อมูลเก่าทั้งหมด
 	productsContainer.innerHTML = ''
   
@@ -54,7 +55,7 @@ function displayBuysell(products) {
 	products.forEach(product => {
 		const productItem = document.createElement('div')
 		productItem.classList.add('products-item')
-
+  
 		// สร้าง HTML สำหรับแต่ละส่วนของข้อมูลสินค้า เช่น ชื่อสายพันธุ์ ราคา ที่อยู่ เป็นต้น
 		const productHTML = `
 			<div class="products-farvor">
@@ -67,8 +68,7 @@ function displayBuysell(products) {
 			<div class="products-address">${product.address}</div>
 			<div class="products-price">${product.price} บาท</div>
 			<div class="products-button">
-				<a href="post.html?id=${product.id}"><button class="chat-seller space-main">แก้ไข</button></a>
-				<a><button class="call space-main data-id="${product.id}" onclick="delete_post_buysell(${product.id})">ลบ</button></a>
+				<a><button class="call space-main" onclick="phonecall('${product.username}')">โทร</button></a>
 			</div>
 			</a>
 		`
@@ -80,6 +80,23 @@ function displayBuysell(products) {
 		productsContainer.appendChild(productItem)
 	})
   }
+  
+//เบอร์โทรผู้ขาย
+async function phonecall(username) {
+	// /user/:id
+	try {
+	  console.log(username)
+	  const response = await axios.get(`${BASE_URL}/user/${username}`); 
+	  const phone = response.data.data[0].phone
+	  console.log(response.data.data[0].phone)
+	  
+	  // เรียกฟังก์ชั่นสำหรับแสดงข้อมูลใน HTML
+	  alert(`เบอร์ผู้ขาย: ${phone}`)
+	} catch (error) {
+		console.error('Error fetching products:', error)
+	}
+	
+}
 
 // save favorite
 async function saveFavorite(productId, username) {
@@ -96,11 +113,12 @@ async function saveFavorite(productId, username) {
 	} catch (error) {
 	  if (error.response && error.response.status === 400) {
 		alert('ลบสินค้าจากรายการโปรดแล้ว');
+		fetchBuysell()
 	  } else {
 		console.error('เพิ่มหรือลบสินค้าในรายการโปรดไม่สำเร็จ', error);
 	  }
 	}
-}
+  }
   
 
   // เรียกใช้งานฟังก์ชั่นเมื่อหน้าเว็บโหลดเสร็จ
@@ -108,19 +126,3 @@ async function saveFavorite(productId, username) {
 	fetchLoggedInUserData()
 	fetchBuysell()
   })
-
-// ลบโพส
-async function delete_post_buysell(id){
-	
-	console.log('id', id)
-	const confirmDelete = window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?')
-	if (confirmDelete) { 
-		try{
-				await axios.delete(`${BASE_URL}/post-buysell/${id}`) 
-				fetchBuysell() // recursive function = เรียก function ตัวเอง
-		} catch (error) {
-				console.log('error', error)
-			}
-	}
-}
-//   /post-buysell/:id

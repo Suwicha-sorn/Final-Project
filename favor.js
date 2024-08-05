@@ -1,7 +1,7 @@
-$('.nav-link').on('click', function() {
-	$('.active-link').removeClass('active-link');
-	$(this).addClass('active-link');
-});
+// $('.nav-link').on('click', function() {
+// 	$('.active-link').removeClass('active-link');
+// 	$(this).addClass('active-link');
+// });
 
 const BASE_URL = 'http://localhost:8000'
 
@@ -12,7 +12,9 @@ function phonecall() {
 
 async function fetchBuysell() {
 	try {
-		const response = await axios.get(`${BASE_URL}/posts-buysell`); // แก้ api 
+		const username = await fetchLoggedInUserData()
+		const response = await axios.get(`${BASE_URL}/favorite-buysell`, {
+			params: { username: username } }); 
 		const products = response.data
   
 		// เรียกฟังก์ชั่นสำหรับแสดงข้อมูลใน HTML
@@ -21,6 +23,27 @@ async function fetchBuysell() {
 		console.error('Error fetching products:', error)
 	}
 }
+
+// ฟังก์ชั่นสำหรับดึงข้อมูลผู้ใช้ที่ล็อกอินเข้ามา
+async function fetchLoggedInUserData() {
+	try {
+	  const authToken = localStorage.getItem('token')
+		const response = await axios.get(`${BASE_URL}/loginuser`, {
+		  headers: {
+			'authorization': `Bearer ${authToken}`
+		  }
+		});
+	
+		console.log(response.data[0])
+		const loggedInUserElement = document.getElementById('loggedInUser');
+		loggedInUserElement.innerHTML = response.data[0].username
+		username = response.data[0].username
+		return username
+		
+	} catch (error) {
+		console.error('Error fetching logged in user data:', error);
+	}
+} 
 
 function displayBuysell(products) {
 	const productsContainer = document.querySelector('.products-con')
@@ -45,7 +68,6 @@ function displayBuysell(products) {
 			<div class="products-address">${product.address}</div>
 			<div class="products-price">${product.price} บาท</div>
 			<div class="products-button">
-				<a><button class="chat-seller space-main">แชท</button></a>
 				<a><button class="call space-main" onclick="phonecall()">โทร</button></a>
 			</div>
 			</a>

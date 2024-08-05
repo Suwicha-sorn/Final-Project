@@ -35,11 +35,13 @@ async function fetchLoggedInUserData() {
     const loggedInUser_emailElement = document.getElementById('loggedInUser_email');
     const loggedInUser_phoneElement = document.getElementById('loggedInUser_phone');
     const dataidDOM = document.getElementById('data_id')
+    const fileuploadDOM = document.getElementById('fileUpload_avatar')
     loggedInUserElement.innerHTML = response.data[0].username
     loggedInUser_imageElement.src = response.data[0].avatar;
     loggedInUser_userElement.innerHTML = response.data[0].username
     loggedInUser_emailElement.innerHTML = response.data[0].email
     loggedInUser_phoneElement.value = response.data[0].phone
+    fileuploadDOM.value = response.data[0].avatar;
     dataidDOM.dataset.id = response.data[0].id
     
     } catch (error) {
@@ -78,6 +80,9 @@ const submitData = async () => {
         const response = await axios.patch(`${BASE_URL}/updateuser/${userId}`, updateuser)
         messageDOM.innerText = 'แก้ไขข้อมูลเรียบร้อย'
         messageDOM.className = 'message success'
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
     } catch (error) {
         console.log("error: ",error)
         console.log("errormsg: ",error.message)

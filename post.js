@@ -1,5 +1,7 @@
 const BASE_URL = 'http://localhost:8000'
 
+let mode = 'CREATE' // default mode
+let selectedid = '' 
 const validateData = (post_buysell_data) => {
     let errors = []
 
@@ -33,24 +35,81 @@ const validateData = (post_buysell_data) => {
 
     return errors
 }
-
+// ฟังก์ชั่นสำหรับดึงข้อมูลผู้ใช้ที่ล็อกอินเข้ามา
 async function fetchLoggedInUserData() {
-    try {
-        const authToken = localStorage.getItem('token')
-        const response = await axios.get(`${BASE_URL}/loginuser`, {
-        headers: {
-            'authorization': `Bearer ${authToken}`
-        }
-    });
-    
-    console.log(response.data[0].username)
-    return response.data[0].username
-    
-    } catch (error) {
-            console.error('Error fetching logged in user data:', error);
-        }
+	try {
+	  const authToken = localStorage.getItem('token')
+		const response = await axios.get(`${BASE_URL}/loginuser`, {
+		  headers: {
+			'authorization': `Bearer ${authToken}`
+		  }
+		});
+	
+		console.log(response.data[0])
+		const loggedInUserElement = document.getElementById('loggedInUser');
+		loggedInUserElement.innerHTML = response.data[0].username
+        username = response.data[0].username
+        return username
+		
+	} catch (error) {
+		console.error('Error fetching logged in user data:', error);
+	}
 } 
 
+  
+  // เรียกใช้งานฟังก์ชั่นเมื่อหน้าเว็บโหลดเสร็จ
+document.addEventListener('DOMContentLoaded', () => {
+	fetchLoggedInUserData()
+  })
+
+//แก้ไขโพส
+window.onload = async () => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const id = urlParams.get('id')
+    console.log('id',id)
+    // ดึงข้อมูลโพสออกมา
+    if (id) {
+        mode = 'EDIT'
+        selectedid = id
+        try{
+            const response = await axios.get(`${BASE_URL}/posts-buysell/${id}`)
+            const post = response.data
+            console.log('post: ',post)
+
+            let breedDOM = document.querySelector('input[name=breed]')
+            let priceDOM = document.querySelector('input[name=price]')
+            let ageDOM  = document.querySelector('input[name=age]')
+            let vaccineDOM  = document.querySelector('input[name=vaccine]')
+            let addressDOM  = document.querySelector('textarea[name=address]')
+            let detailsDOM  = document.querySelector('textarea[name=details]')
+            let fileUpload = document.getElementById('fileUpload')
+            let postDOM = document.getElementById('post-edit')
+
+            postDOM.innerHTML = 'แก้ไขโพส'
+            breedDOM.value = post.breed
+            priceDOM.value = post.price
+            ageDOM.value = post.age
+            vaccineDOM.value = post.vaccine
+            addressDOM.value = post.address
+            detailsDOM.value = post.details
+            fileUpload.value = post.img
+
+            let genderDOM = document.querySelectorAll('input[name=gender]') || {}
+
+            for (let i = 0 ; i < genderDOM.length; i++) {
+                if (genderDOM[i].value == post.gender) {
+                    genderDOM[i].checked = true
+                }
+            }
+
+        } catch (error) {
+            console.log('error')
+        }
+    }
+}
+
+
+// submit
 const post_buysell = async () => {
     let breedDOM = document.querySelector('input[name=breed]')
     let priceDOM = document.querySelector('input[name=price]')
@@ -61,7 +120,8 @@ const post_buysell = async () => {
     let detailsDOM  = document.querySelector('textarea[name=details]')
     let fileUpload = document.getElementById('fileUpload')
     let messageDOM = document.getElementById('message')
-        // const selectedFile = fileUpload.files[0]
+    
+    // const selectedFile = fileUpload.files[0]
         // if (selectedFile.size > 1024 * 1024 * 5) {
         //     alert('ไฟล์มีขนาดเกิน 5 MB')
         // }
@@ -72,8 +132,9 @@ const post_buysell = async () => {
         // const formData = new FormData()
         // formData.append('test', selectedFile)
 
+    const username = await fetchLoggedInUserData()
+    console.log('usernaem: ', username)
     try {
-        const username = await fetchLoggedInUserData()
         let post_buysell_data = {
             username: username,
             breed: breedDOM.value,
@@ -95,9 +156,27 @@ const post_buysell = async () => {
             }
         }
 
-        const response = await axios.post(`${BASE_URL}/post-buysell`, post_buysell_data)
-        console.log('Server response:', response.data)
-        messageDOM.innerText = 'โพสต์สำเร็จ'
+        let message = 'โพสสำเร็จ'
+
+        if (mode == 'CREATE') {
+            const response = await axios.post(`${BASE_URL}/post-buysell`, post_buysell_data)
+            console.log('resopnse', response.data)
+        } else {
+            const response = await axios.patch(`${BASE_URL}/posts-buysell/${selectedid}`, post_buysell_data)
+            message = 'แก้ไขโพสเรียบร้อย'
+            console.log('resopnse', response.data)
+        }
+        breedDOM.value = ''
+        priceDOM.value = ''
+        genderDOM.value = genderDOM.checked = false
+        ageDOM.value = ''
+        vaccineDOM.value = ''
+        addressDOM.value = ''
+        detailsDOM.value = ''
+        fileUpload.value = ''
+
+        
+        messageDOM.innerText = message
         messageDOM.className = 'message success'
     } catch (error) {
         console.log('error message: ', error.message)

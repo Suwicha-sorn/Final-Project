@@ -1,139 +1,215 @@
 @import url('https://fonts.googleapis.com/css2?family=Modak&display=swap');
 
-* {
+.grid {
+    display: grid;
+    grid-template-columns: 400px auto;
+    grid-template-rows: 100px minmax(250px, auto) 100px;
+    grid-template-areas: 
+        'header header'
+        'main main'
+        'footer footer';
+}
+
+html, body {
+    background-color: #FFEED0;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+.header {
+    grid-area: header;
+}
+.leftber { 
+    grid-area: leftber;
+}
+.main {
+    grid-area: main;
+    /* max-width: 1200px; */
+    margin: 20px;
+}
+.footer {
+    grid-area: footer;
+}
+
+/* Header bar*/
+.top {
+    width: 180px;
+    float: left;
+    margin-top: -20px;
+    padding: 10px;
+}
+
+.top-header {
+    background-color: #F9D390;
+    box-shadow: 0px 0px 8px 0px rgb(102, 88, 61);
+}
+.head {
+    color: #000000;
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+    margin: 5px;    
+    margin-left: 70px;                       
+}
+.header.top-header img {
+    width: 180px;
+    height: 128px;
+}
+
+.menu-item {
+    color: #000000;
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+    position: absolute;
+    top: 0%;
+    left: 80%;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.brand {
+    display: inline-block;
+    font-size: 48px;
+    font-weight: 500;
+    margin-top: 10px;
+    color: #E67877;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-decoration: none;
+    font-family: 'Modak', cursive
     
 }
 
-* a{
-    text-decoration: none;
+a.brand:hover{
+    color: #E67877;
+}
+.font {
     color: #000000;
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+    
+    font-size: 18px;
+    font-weight: 800px;
 }
 
-* li{
-    list-style: none;
+.button {
+    color: #ffffff;
+    background-color: #0056b3;
+    padding: 15px;
+    text-align: center;
+    display: inline-block;
+    width: 7%;
+    border: 3px solid #000000;
+    border-radius: 30px;
+
 }
 
-body{
-    background-color: #FFEED0;
+.image {
+    max-width: 700px;
+    margin: auto;
 }
 
-.grid{
-    display: grid;
-    grid-template-columns: 400px auto;
-    grid-template-rows: 100px minmax(250px, auto) ;
-    grid-template-areas: 
-    'header header '
-    'main  main';
-    /* Header */
-    & .page-header{
-        background-color: #F9D390;
-        padding: 10px;
-        margin-bottom: 0px;
-        & img{
-            width: 180px;
-            float: left;
-            max-width: 700px;
-            margin: auto;
-            margin-top: -20px;
-        }
-        
-        & .brand{
-            display: inline-block;
-            font-size: 48px;
-            font-weight: 500;
-            color: #E67877;
-            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-            font-family: 'Modak', cursive
-            
-        }
-
-         & h5{
-            font-size: 16px;
-            position: absolute;
-            top: 2%;
-            left: 85%;
-            transform: translateX(-50%);
-            
-         }
-
-        
-
-         .favour-baricon{
-            width: 100%;
-            max-width: 36px;
-            position: absolute;
-            top: 5%;
-            left: 75%;
-            color: #3D3CE7;
-            transform: translateX(-75%);
-        }
-        
-        .chat-baricon{
-            width: 100%;
-            max-width: 28px;
-            position: absolute;
-            top: 3%;
-            left: 78%;
-            color: #3D3CE7;
-            transform: translateX(-80%);
-        }
-        
-        .chat-baricon:hover{
-            color: red;
-        }
-        
-        .md-36 {
-            font-size: 36px !important;
-          }
-
-        & button{
-            background-color: #3D3CE7;
-            color: white;
-            width: 5%;
-            font-size: 18px;
-            height: 50px;
-            border-radius: 10px;
-            position: absolute;
-            top: 2%;
-            left: 95%;
-            transform: translateX(-80%);
-        }
-
-
-
-    }
-
-    & .page-main{
-        & h3{
-            font-size: 36px;
-            margin: 20px;
-        }
-
-        
-    }
+.search-bar {
+    position: absolute;
+    left: 30%;
+    top: 3%;
+    width: 70vh;
 }
 
-.page-header{
-    grid-area: header;
+#search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    width: 50vh;
 }
 
-.page-main{
-    grid-area: main;
+#search-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0px;
+    margin-left: 0px;
+    cursor: pointer;
 }
 
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+.favour-baricon{
+    width: 100%;
+    max-width: 36px;
+    position: absolute;
+    top: 0%;
+    left: 75%;
+    color: #3D3CE7;
+    transform: translateX(-75%);
+}
+
+.chat-baricon{
+    width: 100%;
+    max-width: 28px;
+    position: absolute;
+    top: 3%;
+    left: 78%;
+    color: #3D3CE7;
+    transform: translateX(-80%);
+}
+
+.chat-baricon:hover{
+    color: red;
+}
+
+.md-36 {
+    font-size: 36px !important;
+  }
+
+
+.post-button{
+    background-color: #3D3CE7;
+    color: white;
+    width: 5%;
+    font-size: 18px;
+    height: 50px;
+    border-radius: 10px;
+    position: absolute;
+    top: 2%;
+    left: 95%;
+    transform: translateX(-80%);
+}
+
+.username-user{
+    font-weight: bold;
+    color: #000;
+    margin-left: 10px;
+}
 /* Header dropdown */
+.right-photo-user {
+    width: 80px !important;
+    height: 70px !important;
+    border-radius: 50%;
+    padding: 20px;
+    position: absolute;
+    left: -5%;
+    transform: translateX(-40%);
+}
+
+
 .navbar {
     background-color: #F9D390;
     border-radius: 7px;
     box-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(0, 0, 0, 0.24);
     position: absolute;
-    top: 1%;
+    top: -1%;
     left: 90%;
     transform: translateX(-90%);
-    width: 150px;
+    width: 200px;
+    z-index: 1000;
   }
     ul {
     display: flex;
@@ -155,6 +231,7 @@ body{
   }
   li:hover {
     background-color: #f9f9f9;
+    width: 150px;
   }
   .dropdown {
     position: absolute;
@@ -168,7 +245,12 @@ body{
     transition: 0.3s;
     left: 0;
     width: 200px;
+    
   }
+  .dropdown-link a {
+    text-decoration: none; /* ลบเส้นใต้ในลิงก์ของเมนู dropdown */
+  }
+  
   .dropdown-link:hover .dropdown {
     top: 105%;
     opacity: 1;
@@ -178,78 +260,59 @@ body{
     transform: rotate(-180deg);
   }
 
-/*navbar page-main*/ 
-a {
-    outline: none;
-}
-
-.navbar-container {
-    margin: 20px;
-}
-
-.navbar-container ul {
-    margin: 0;
+  /*left bar*/
+  .what-page{
     padding: 0;
-    text-align: right;
-    display: inline-block;
-    vertical-align: middle;
+    position: relative;
+    left: -10%;
+    top: -10%;
 }
 
-.navbar-container ul li {
-    display: inline-block;
-    font-size: 16px;
+.img-left{
+    max-width: 600px;
+    width: 600px;
 }
 
-.navbar-container ul li a {
-    color: #000000;
+/*left bar*/
+.button2 {
+    color: black;
+    font: bold;
+    border: 3px solid #000000;
+    background-color: #6DC298;
+    padding: 15px;
+    text-align: center;
     text-decoration: none;
-    display: inline-block;	
-    padding: 10px;
-    transition: color 0.5s;
+    margin-bottom: 10px;
+    display: block;
+    width: 50%;
+    margin-left: 60px;
+    border-radius: 30px;
 }
-
-.navbar-container ul li .underline {
-    height: 3px;
-    background-color: transparent;
-    width: 0%;
-    transition: width 0.2s, background-color 0.5s;
-    margin: 0 auto;
+.button3 {
+    color: black;
+    border: 3px solid #000000;
+    background-color: #E67877;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    width: 50%;
+    margin-left: 60px;
+    border-radius: 30px;
 }
-
-.navbar-container ul li.active-link .underline {
-    width: 100%;
-    background-color: #3D3CE7;
-}
-
-.navbar-container ul li:hover .underline {
-    background-color: #3D3CE7;
-    width: 100%;
-}
-
-.navbar-container ul li:hover a {
-    background-color: #ddd;
-    width: 100%;
-}
-
-.navbar-container ul li:active a {
-    transition: none;
-    color: #000000;
-}
-
-.navbar-container ul li:active .underline {
-    transition: none;
-    background-color: rgba(255, 255, 255, 0.76);
-}
-
-/* Header dropdown */
-.right-photo-user {
-    width: 117px !important;
-    height: 110px !important;
-    border-radius: 50%;
-    padding: 20px;
-    position: absolute;
-    left: -5%;
-    transform: translateX(-40%);
+.button4 {
+    color: black;
+    border: 3px solid #000000;
+    background-color: #7877E6;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    width: 50%;
+    margin-left: 60px;
+    border-radius: 30px;
 }
 
 
@@ -320,7 +383,7 @@ img{
 
 .products-button{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 
 }
 
@@ -339,7 +402,9 @@ img{
     
     
 }
-
+.call:hover{
+    color: red;
+}
 .chat-baricon1{
     width: 100%;
     max-width: 20px; 
@@ -373,4 +438,67 @@ img{
 
 .fa-product{
     top: 18px
+}
+
+/*navbar page-main*/ 
+a {
+    outline: none;
+}
+
+.navbar-container {
+    margin: 20px;
+}
+
+.navbar-container ul {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.navbar-container ul li {
+    display: inline-block;
+    font-size: 16px;
+}
+
+.navbar-container ul li a {
+    color: #000000;
+    text-decoration: none;
+    display: inline-block;	
+    padding: 10px;
+    transition: color 0.5s;
+}
+
+.navbar-container ul li .underline {
+    height: 3px;
+    background-color: transparent;
+    width: 0%;
+    transition: width 0.2s, background-color 0.5s;
+    margin: 0 auto;
+}
+
+.navbar-container ul li.active-link .underline {
+    width: 100%;
+    background-color: #3D3CE7;
+}
+
+.navbar-container ul li:hover .underline {
+    background-color: #3D3CE7;
+    width: 100%;
+}
+
+.navbar-container ul li:hover a {
+    background-color: #ddd;
+    width: 100%;
+}
+
+.navbar-container ul li:active a {
+    transition: none;
+    color: #000000;
+}
+
+.navbar-container ul li:active .underline {
+    transition: none;
+    background-color: rgba(255, 255, 255, 0.76);
 }

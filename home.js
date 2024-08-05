@@ -6,15 +6,6 @@ function phonecall() {
   window.location.href = 'login.html'
 }
 
-
-// Import Axios library
-// คุณจะต้องแน่ใจว่าคุณได้เพิ่ม Axios เข้าไปในโปรเจกต์ของคุณก่อนใช้งาน
-// ในกรณีนี้เราจะสมมติว่า Axios ได้ถูกนำเข้าแล้ว
-// หากยังไม่ได้นำเข้า Axios คุณสามารถใช้ <script> ใน HTML เพื่อเรียกใช้ได้
-// <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-// หรือใช้ npm/yarn เพื่อติดตั้ง Axios แล้วนำเข้าใช้งานในโค้ดของคุณ
-// const axios = require('axios'); // for Node.js environment
-
 // สร้างฟังก์ชั่นสำหรับดึงข้อมูลจาก API POST ด้วย Axios
 async function fetchBuysell() {
   try {
@@ -43,18 +34,18 @@ function displayBuysell(products) {
       // สร้าง HTML สำหรับแต่ละส่วนของข้อมูลสินค้า เช่น ชื่อสายพันธุ์ ราคา ที่อยู่ เป็นต้น
       const productHTML = `
           <div class="products-farvor">
-              <i class="fa-regular fa-heart fa-product fa-2xl"></i>
+              </button><i class="fa-regular fa-heart fa-product fa-2xl" ></i>
           </div>
+          <a href="Login.html">
           <img class="products-img" src="${product.img}" alt="แมว.png">
-              <a href="info-buysell.html"></a>
           </img>
           <div class="products-breed">${product.breed}</div>
           <div class="products-address">${product.address}</div>
           <div class="products-price">${product.price} บาท</div>
           <div class="products-button">
-              <a><button class="chat-seller space-main">แชท</button></a>
-              <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
+              <a><button class="call space-main" onclick="phonecall('${product.username}')">โทร</button></a>
           </div>
+          </a>
       `
 
       // ใส่ HTML ของสินค้าลงใน productItem
@@ -63,6 +54,23 @@ function displayBuysell(products) {
       // เพิ่ม productItem ลงใน container
       productsContainer.appendChild(productItem)
   })
+}
+
+//เบอร์โทรผู้ขาย
+async function phonecall(username) {
+  // /user/:id
+  try {
+    console.log(username)
+    const response = await axios.get(`${BASE_URL}/user/${username}`); 
+    const phone = response.data.data[0].phone
+    console.log(response.data.data[0].phone)
+    
+    // เรียกฟังก์ชั่นสำหรับแสดงข้อมูลใน HTML
+    alert(`เบอร์ผู้ขาย: ${phone}`)
+  } catch (error) {
+      console.error('Error fetching products:', error)
+  }
+  
 }
 
 // เรียกใช้งานฟังก์ชั่นเมื่อหน้าเว็บโหลดเสร็จ

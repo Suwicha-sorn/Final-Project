@@ -2,11 +2,11 @@
 
 .grid {
     display: grid;
-    grid-template-columns: 800px auto;
-    grid-template-rows: 100px minmax(400px, auto) 100px;
+    grid-template-columns: 400px auto;
+    grid-template-rows: 100px minmax(250px, auto) 100px;
     grid-template-areas: 
         'header header'
-        'leftber main'
+        'main main'
         'footer footer';
 }
 
@@ -16,30 +16,16 @@ html, body {
     padding: 0;
 }
 
-* a{
-    text-decoration: none;
-    color: #000000;
-}
-h1,h3,h4,p{
-    padding: 0;
-    margin: 0;
-}
-
 .header {
     grid-area: header;
 }
 .leftber { 
     grid-area: leftber;
-    position: relative;
-    left: 10%;
-    top: 10%;
-    width: 600px;
-    height: 600px;
 }
 .main {
     grid-area: main;
-    
-
+    /* max-width: 1200px; */
+    margin: 20px;
 }
 .footer {
     grid-area: footer;
@@ -50,6 +36,7 @@ h1,h3,h4,p{
     width: 180px;
     float: left;
     margin-top: -20px;
+    padding: 10px;
 }
 
 .top-header {
@@ -62,22 +49,33 @@ h1,h3,h4,p{
     display: inline-block;
     text-decoration: none;
     margin: 5px;    
-    margin-left: 70px;                             
+    margin-left: 70px;                       
 }
+.header.top-header img {
+    width: 180px;
+    height: 128px;
+}
+
 .menu-item {
     color: #000000;
     padding: 15px;
     display: inline-block;
     text-decoration: none;
     position: absolute;
-    top: 2.5%;
+    top: 0%;
     left: 80%;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .brand {
     display: inline-block;
     font-size: 48px;
     font-weight: 500;
+    margin-top: 10px;
     color: #E67877;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     text-decoration: none;
@@ -85,7 +83,9 @@ h1,h3,h4,p{
     
 }
 
-
+a.brand:hover{
+    color: #E67877;
+}
 .font {
     color: #000000;
     padding: 15px;
@@ -117,7 +117,7 @@ h1,h3,h4,p{
     position: absolute;
     left: 30%;
     top: 3%;
-    width: 60vh;
+    width: 70vh;
 }
 
 #search-input {
@@ -145,7 +145,7 @@ h1,h3,h4,p{
     width: 100%;
     max-width: 36px;
     position: absolute;
-    top: 5%;
+    top: 0%;
     left: 75%;
     color: #3D3CE7;
     transform: translateX(-75%);
@@ -179,10 +179,15 @@ h1,h3,h4,p{
     border-radius: 10px;
     position: absolute;
     top: 2%;
-    left: 96%;
+    left: 95%;
     transform: translateX(-80%);
 }
 
+.username-user{
+    font-weight: bold;
+    color: #000;
+    margin-left: 10px;
+}
 /* Header dropdown */
 .right-photo-user {
     width: 80px !important;
@@ -193,6 +198,8 @@ h1,h3,h4,p{
     left: -5%;
     transform: translateX(-40%);
 }
+
+
 .navbar {
     background-color: #F9D390;
     border-radius: 7px;
@@ -202,6 +209,7 @@ h1,h3,h4,p{
     left: 90%;
     transform: translateX(-90%);
     width: 200px;
+    z-index: 1000;
   }
     ul {
     display: flex;
@@ -223,6 +231,7 @@ h1,h3,h4,p{
   }
   li:hover {
     background-color: #f9f9f9;
+    width: 150px;
   }
   .dropdown {
     position: absolute;
@@ -236,7 +245,12 @@ h1,h3,h4,p{
     transition: 0.3s;
     left: 0;
     width: 200px;
+    
   }
+  .dropdown-link a {
+    text-decoration: none; /* ลบเส้นใต้ในลิงก์ของเมนู dropdown */
+  }
+  
   .dropdown-link:hover .dropdown {
     top: 105%;
     opacity: 1;
@@ -259,20 +273,139 @@ h1,h3,h4,p{
     width: 600px;
 }
 
-/*Right bar*/
+/*left bar*/
+.button2 {
+    color: black;
+    font: bold;
+    border: 3px solid #000000;
+    background-color: #6DC298;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    width: 50%;
+    margin-left: 60px;
+    border-radius: 30px;
+}
+.button3 {
+    color: black;
+    border: 3px solid #000000;
+    background-color: #E67877;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    width: 50%;
+    margin-left: 60px;
+    border-radius: 30px;
+}
+.button4 {
+    color: black;
+    border: 3px solid #000000;
+    background-color: #7877E6;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+    width: 50%;
+    margin-left: 60px;
+    border-radius: 30px;
+}
+
+
+/*main bar*/
+
+.products-con{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-top: 5%;
+}
+
+.products-item{
+    position: relative;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: #E67877 ;
+    width: 300px;
+    height: 350px;
+    
+}
+
+.products-item:hover{
+    transition: 0.3s;
+    border: 5px solid #3D3CE7;
+}
+
+
+.fa-heart{
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    color: #3D3CE7;
+}
+
+.fa-heart:hover{
+    color: red;
+}
+
+img{
+    width: 100%;
+    height: 50%;
+    max-width: 100%;
+    border-radius: 10px;
+    
+}
+
+.products-breed{
+    padding: 0.5rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.products-address{
+    padding: 0.5rem;
+    color: #ffffff;
+}
+
+.products-price{
+    padding: 0.5rem;
+    font-weight: bold;
+    color: #000;
+}
+
+.space-main{
+    margin: 0.5rem;
+}
+
+.products-button{
+    display: flex;
+    justify-content: space-around;
+
+}
 
 .chat-seller{
     color: #000000;
     background-color: white;
     border-radius: 10px;
-    width: 25%;
-    height: 10%;
+    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 16px;
+    
+}
+.chat-seller:hover{
+    color: red;
+    
     
 }
 
 .chat-baricon1{
-    width: 25%;
-    max-width: 18px; 
+    width: 100%;
+    max-width: 20px; 
     padding-right:10px ;
     margin-top: -10px;
     margin-bottom: -5px;
@@ -285,45 +418,91 @@ h1,h3,h4,p{
     color: #000000;
     background-color: white;
     border-radius: 10px;
-    width: 25%;
-    height: 10%;
+    height: 50px;
+    margin-top: 9px;
+    padding-right: 30px;
+    padding-left: 30px;
+    font-size: 16px;
 }
 
-.inline-text{
-    display: inline-block;
-}
-
-/*footer ber*/
-.footer-waning{
-    position: absolute;
-    top: 95%;
-    left: 40%;
-}
-
-.space-main{
-    margin-bottom: 10px;
-}
-
-.font-style{
-    color: #2925DD;
-}
-
-.organize-space{
-    margin-top: 8%;
-}
-
-.fa-check{
-    color: #14FF0F;
+.call:hover{
+    color: red;
 }
 
 .fa-phone{
+    width: 25%;
+    max-width: 36px; 
     color: white;
     text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
     padding-right: 10px;
+    
 }
 
-.detail{
-    width: 600px;
+.fa-product{
+    top: 18px
+}
+
+/*navbar page-main*/ 
+a {
+    outline: none;
+}
+
+.navbar-container {
+    margin: 20px;
+}
+
+.navbar-container ul {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.navbar-container ul li {
+    display: inline-block;
+    font-size: 16px;
+}
+
+.navbar-container ul li a {
+    color: #000000;
+    text-decoration: none;
+    display: inline-block;	
+    padding: 10px;
+    transition: color 0.5s;
+}
+
+.navbar-container ul li .underline {
+    height: 3px;
+    background-color: transparent;
+    width: 0%;
+    transition: width 0.2s, background-color 0.5s;
+    margin: 0 auto;
+}
+
+.navbar-container ul li.active-link .underline {
+    width: 100%;
+    background-color: #3D3CE7;
+}
+
+.navbar-container ul li:hover .underline {
+    background-color: #3D3CE7;
+    width: 100%;
+}
+
+.navbar-container ul li:hover a {
+    background-color: #ddd;
+    width: 100%;
+}
+
+.navbar-container ul li:active a {
+    transition: none;
+    color: #000000;
+}
+
+.navbar-container ul li:active .underline {
+    transition: none;
+    background-color: rgba(255, 255, 255, 0.76);
 }
 
 .username-user{

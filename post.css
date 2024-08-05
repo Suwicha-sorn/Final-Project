@@ -357,3 +357,9 @@ body{
     background-color: lightgreen;
     display: block;
 }
+
+.username-user{
+    font-weight: bold;
+    color: #000;
+    margin-left: 10px;
+}

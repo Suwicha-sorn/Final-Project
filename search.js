@@ -1,4 +1,5 @@
 const BASE_URL = 'http://localhost:8000'
+let products = []
 
 // ฟังก์ชั่นสำหรับดึงข้อมูลจาก API POST ด้วย Axios
 async function fetchBuysell() {
@@ -70,6 +71,24 @@ async function displayBuysell(products) {
       productsContainer.appendChild(productItem)
   })
 }
+
+// ฟังก์ชันสำหรับการค้นหาสินค้า
+function searchProducts() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const filteredProducts = products.filter(product => {
+      return (
+        product.username.toLowerCase().includes(query) ||
+        product.breed.toLowerCase().includes(query) ||
+        product.price.toLowerCase().includes(query) ||
+        product.gender.toLowerCase().includes(query) ||
+        product.age.toLowerCase().includes(query) ||
+        product.vaccine.toLowerCase().includes(query) ||
+        product.address.toLowerCase().includes(query) ||
+        product.details.toLowerCase().includes(query)
+      );
+    });
+    displayBuysell(filteredProducts);
+  }
 
 //เบอร์โทรผู้ขาย
 async function phonecall(username) {

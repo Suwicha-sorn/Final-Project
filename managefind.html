@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>manage</title>
-    <link rel="stylesheet" href="manage.css">
+    <link rel="stylesheet" href="managefind.css">
     <script src="https://kit.fontawesome.com/052fd7422a.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
@@ -14,6 +14,10 @@
             <img class="header top" src="image/Meow.png">
             <a class="brand" href="buysell.html">Meow Meow</a>
             <a href="post.html"><button class="post-button">โพสต์</button></a>
+            <span class="search-bar">
+                <input type="text" id="search-input" placeholder="ค้นหา...">
+                <button id="search-button">ค้นหา</button>
+            </span>
             <a href="favor-buysell.html" class="favour-bar "><i class="fa-regular fa-heart favour-baricon fa-2xl"></i></a>
             <!-- <a href="#" class="chat-bar"><i class="material-symbols-outlined chat-baricon md-36">chat</i></a> -->
             <div class="navbar">
@@ -48,7 +52,7 @@
             <!-- navbar -->
             <div class="navbar-container">
                 <ul>
-                    <li class="nav-link active-link">
+                    <li class="nav-link">
                         <a href="manage.html">ซื้อขาย</a>
                         <div class="underline"></div>
                     </li>
@@ -56,7 +60,7 @@
                         <a href="managedatting.html">หาคู่ให้แมว</a>
                         <div class="underline"></div>
                     </li>
-                    <li class="nav-link">
+                    <li class="nav-link active-link">
                         <a href="managefind.html">หาบ้านให้แมว</a>
                         <div class="underline"></div>
                     </li>
@@ -90,6 +94,6 @@
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
-<script src="manage.js"></script> 
+<script src="managefind.js"></script> 
 </body>
 </html>

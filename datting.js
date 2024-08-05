@@ -1,20 +1,12 @@
 const BASE_URL = 'http://localhost:8000'
 
 
-function phonecall() {
-    alert("0935987444")
-  }
-
-// Import Axios library
-// คุณจะต้องแน่ใจว่าคุณได้เพิ่ม Axios เข้าไปในโปรเจกต์ของคุณก่อนใช้งาน
-// ในกรณีนี้เราจะสมมติว่า Axios ได้ถูกนำเข้าแล้ว
-// หากยังไม่ได้นำเข้า Axios คุณสามารถใช้ <script> ใน HTML เพื่อเรียกใช้ได้
-// <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-// หรือใช้ npm/yarn เพื่อติดตั้ง Axios แล้วนำเข้าใช้งานในโค้ดของคุณ
-// const axios = require('axios'); // for Node.js environment
+// function phonecall() {
+//     alert("0935987444")
+//   }
 
 // สร้างฟังก์ชั่นสำหรับดึงข้อมูลจาก API POST ด้วย Axios
-async function fetchBuysell() {
+async function fetchdatting() {
   try {
       const response = await axios.get(`${BASE_URL}/posts-datting`); // เปลี่ยน URL API เป็น URL ที่ถูกต้อง
       const products = response.data
@@ -26,9 +18,32 @@ async function fetchBuysell() {
   }
 }
 
+// ฟังก์ชั่นสำหรับดึงข้อมูลผู้ใช้ที่ล็อกอินเข้ามา
+async function fetchLoggedInUserData() {
+  try {
+    const authToken = localStorage.getItem('token')
+      const response = await axios.get(`${BASE_URL}/loginuser`, {
+        headers: {
+          'authorization': `Bearer ${authToken}`
+        }
+      });
+  
+      console.log(response.data[0])
+      const loggedInUserElement = document.getElementById('loggedInUser');
+      loggedInUserElement.innerHTML = response.data[0].username
+      username = response.data[0].username
+		  return username
+      
+  } catch (error) {
+      console.error('Error fetching logged in user data:', error);
+  }
+} 
+
 // ฟังก์ชั่นสำหรับแสดงข้อมูลใน HTML
-function displayBuysell(products) {
+async function displayBuysell(products) {
   const productsContainer = document.querySelector('.products-con')
+
+  const username = await fetchLoggedInUserData()
 
   // เคลียร์ข้อมูลเก่าทั้งหมด
   productsContainer.innerHTML = ''
@@ -40,18 +55,17 @@ function displayBuysell(products) {
 
       // สร้าง HTML สำหรับแต่ละส่วนของข้อมูลสินค้า เช่น ชื่อสายพันธุ์ ราคา ที่อยู่ เป็นต้น
       const productHTML = `
-          <a href="info-datting.html?id=${product.id}">
           <div class="products-farvor">
-              <i class="fa-regular fa-heart fa-product fa-2xl"></i>
+              </button><i class="fa-regular fa-heart fa-product fa-2xl" data-id="${product.id}" onclick="saveFavorite('${product.id}','${username}')"></i>
           </div>
+          <a href="info-datting.html?id=${product.id}">
           <img class="products-img" src="${product.img}" alt="แมว.png">
           </img>
           <div class="products-breed">${product.breed}</div>
           <div class="products-address">${product.address}</div>
           <div class="products-price">${product.price} บาท</div>
           <div class="products-button">
-              <a><button class="chat-seller space-main">แชท</button></a>
-              <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
+              <a><button class="call space-main" onclick="phonecall('${product.username}')">โทร</button></a>
           </div>
           </a>
       `
@@ -64,7 +78,46 @@ function displayBuysell(products) {
   })
 }
 
+//เบอร์โทรผู้ขาย
+async function phonecall(username) {
+  // /user/:id
+  try {
+    console.log(username)
+    const response = await axios.get(`${BASE_URL}/user/${username}`); 
+    const phone = response.data.data[0].phone
+    console.log(response.data.data[0].phone)
+    
+    // เรียกฟังก์ชั่นสำหรับแสดงข้อมูลใน HTML
+    alert(`เบอร์ผู้ขาย: ${phone}`)
+  } catch (error) {
+      console.error('Error fetching products:', error)
+  }
+  
+}
+
+// save favorite
+async function saveFavorite(productId, username) {
+  console.log('productid: ',productId)
+  console.log('username: ',username)
+  try {
+    const response = await axios.post(`${BASE_URL}/favorite-datting`, 
+			 { username: username,
+        product_id: productId,
+        type: 'datting'
+        } ); 
+        
+    alert(response.data.message)
+  } catch (error) {
+    if (error.response && error.response.status === 400) {
+      alert('ลบสินค้าจากรายการโปรดแล้ว');
+    } else {
+      console.error('เพิ่มหรือลบสินค้าในรายการโปรดไม่สำเร็จ', error);
+    }
+  }
+}
+
 // เรียกใช้งานฟังก์ชั่นเมื่อหน้าเว็บโหลดเสร็จ
 document.addEventListener('DOMContentLoaded', () => {
-  fetchBuysell();
+  fetchLoggedInUserData()
+  fetchdatting()
 })

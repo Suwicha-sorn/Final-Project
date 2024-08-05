@@ -6,18 +6,19 @@
 const BASE_URL = 'http://localhost:8000'
 
 
+function phonecall() {
+    alert("0935987444")
+}
 
-
-// แสดงข้อมูล
-async function fetchBuysell() {
+async function fetchdatting() {
 	try {
 		const username = await fetchLoggedInUserData()
-		const response = await axios.get(`${BASE_URL}/posts-buysell-logged`, {
+		const response = await axios.get(`${BASE_URL}/posts-datting-logged`, {
 			params: { username: username } }); 
 		const products = response.data
   
 		// เรียกฟังก์ชั่นสำหรับแสดงข้อมูลใน HTML
-		displayBuysell(products)
+		displaydatting(products)
 	} catch (error) {
 		console.error('Error fetching products:', error)
 	}
@@ -44,9 +45,9 @@ async function fetchLoggedInUserData() {
 	}
 } 
 
-function displayBuysell(products) {
+function displaydatting(products) {
 	const productsContainer = document.querySelector('.products-con')
-	
+  
 	// เคลียร์ข้อมูลเก่าทั้งหมด
 	productsContainer.innerHTML = ''
   
@@ -54,20 +55,20 @@ function displayBuysell(products) {
 	products.forEach(product => {
 		const productItem = document.createElement('div')
 		productItem.classList.add('products-item')
-
+  
 		// สร้าง HTML สำหรับแต่ละส่วนของข้อมูลสินค้า เช่น ชื่อสายพันธุ์ ราคา ที่อยู่ เป็นต้น
 		const productHTML = `
 			<div class="products-farvor">
               </button><i class="fa-regular fa-heart fa-product fa-2xl" data-id="${product.id}" onclick="saveFavorite('${product.id}','${username}')"></i>
           </div>
-			<a href="info-buysell.html?id=${product.id}">
+			<a href="info-datting.html?id=${product.id}">
 			<img class="products-img" src="${product.img}" alt="แมว.png">
 			</img>
 			<div class="products-breed">${product.breed}</div>
 			<div class="products-address">${product.address}</div>
 			<div class="products-price">${product.price} บาท</div>
 			<div class="products-button">
-				<a href="post.html?id=${product.id}"><button class="chat-seller space-main">แก้ไข</button></a>
+				<a href="post-datting.html?id=${product.id}"><button class="chat-seller space-main">แก้ไข</button></a>
 				<a><button class="call space-main data-id="${product.id}" onclick="delete_post_buysell(${product.id})">ลบ</button></a>
 			</div>
 			</a>
@@ -86,10 +87,10 @@ async function saveFavorite(productId, username) {
 	console.log('productid: ',productId)
 	console.log('username: ',username)
 	try {
-	  const response = await axios.post(`${BASE_URL}/favorite-buysell`, 
+	  const response = await axios.post(`${BASE_URL}/favorite-datting`, 
 			   { username: username,
 		  product_id: productId,
-		  type: 'buysell'
+		  type: 'datting'
 		  } ); 
 		  
 	  alert(response.data.message)
@@ -102,25 +103,23 @@ async function saveFavorite(productId, username) {
 	}
 }
   
-
   // เรียกใช้งานฟังก์ชั่นเมื่อหน้าเว็บโหลดเสร็จ
   document.addEventListener('DOMContentLoaded', () => {
 	fetchLoggedInUserData()
-	fetchBuysell()
+	fetchdatting()
   })
 
-// ลบโพส
+  // ลบโพส
 async function delete_post_buysell(id){
 	
 	console.log('id', id)
 	const confirmDelete = window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?')
-	if (confirmDelete) { 
+	if (confirmDelete) {
 		try{
-				await axios.delete(`${BASE_URL}/post-buysell/${id}`) 
-				fetchBuysell() // recursive function = เรียก function ตัวเอง
-		} catch (error) {
-				console.log('error', error)
-			}
+			await axios.delete(`${BASE_URL}/post-datting/${id}`) 
+			fetchdatting() // recursive function = เรียก function ตัวเอง
+	} catch (error) {
+			console.log('error', error)
+		}
 	}
 }
-//   /post-buysell/:id

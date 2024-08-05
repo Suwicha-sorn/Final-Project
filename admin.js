@@ -21,11 +21,10 @@ const loadData = async () => {
         let user = response.data[i]
         htmlData += `<div>
             ${user.id}: &nbsp; ${user.email} ${user.phone} 
-            <a href='post.html?id=${user.id}'><button>Edit</button></a>
             <button class='delete' data-id='${user.id}'>Delete</button>
         </div>`
     }
-
+// {/* <a href='post.html?id=${user.id}'><button>Edit</button></a> */}
     htmlData += '</div>'
 
     userDOM.innerHTML = htmlData
@@ -37,11 +36,15 @@ const loadData = async () => {
         deleteDOMs[i].addEventListener('click', async (event) => {
             // ดึง id ออกมา 
             const id = event.target.dataset.id
-            try{
-                await axios.delete(`${BASE_URL}/users/${id}`)
-                loadData() // recursive function = เรียก function ตัวเอง
-            } catch (error) {
-                console.log('error', error)
+            const confirmDelete = window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?')
+            if (confirmDelete) {
+
+                try{
+                    await axios.delete(`${BASE_URL}/users/${id}`)
+                    loadData() // recursive function = เรียก function ตัวเอง
+                } catch (error) {
+                    console.log('error', error)
+                }
             }
         })
     }
