@@ -54,7 +54,7 @@ let product = response.data
 const postTime = new Date(product.time_post)
 const formattedTime = postTime.toLocaleString()
 
-htmlDataImg += `<h3 class="head font what-page"> Meow Meow/หาบ้านให้แมว</h3>
+htmlDataImg += `<h3 class="head font what-page"> Meow Meow/หาบ้าน</h3>
 <img class="img-left" src="${product.img}" alt="image-cat">`
 
 htmlData += `<h1 class="space-main organize-space">${product.breed}</h1>
