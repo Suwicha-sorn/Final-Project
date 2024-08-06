@@ -1,76 +1,58 @@
-ตัวอย่าง
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head> -->
-  <!-- ส่วนที่ไม่แสดงออกไปในหน้าจอของ Browser -->
-  <!-- <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document 2</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body> -->
-  <!-- ส่วนที่แสดงออกไปในหน้าจอของ Browser -->
-  <!-- <a href="user.html">go to user management</a>
-  <div class="container"> -->
-    <!-- 3. form -->
-    <!-- <div class="header form-input">
-      Register form
-    </div>
-    <div class="flex form-input">
-      <div class="header-form">ชื่อจริง</div>
-      <input class="form" name="firstname" type="text">
-    </div>
-    <div class="flex form-input">
-      <div class="header-form">นามสกุล </div>
-      <input class="form" name="lastname" type="text">
-    </div>
-    <div class="flex form-input">
-      <div class="header-form">อายุ</div>
-      <input class="form" name="age" type="number" min="0" max="100">
-    </div>
-    <div class="flex gender form-input">
-      <div class="header-form">เพศ</div>
-      <div class="flex">
-        <div>
-          <input name="gender" type="radio" value="ชาย"> ชาย
+<html>
+    <head>
+        <title>Meow Meow</title>
+        <link rel="stylesheet" href="buysell.css">
+        <script src="https://kit.fontawesome.com/052fd7422a.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    </head>
+    <body>
+        <div class="grid">
+            <div class="header top-header">
+                <img class="header top" src="image/Meow.png">
+                <a class="brand" href="Login.html">Meow Meow</a>
+                <a href="Login.html"><button class="post-button">โพสต์</button></a>
+                <a href="Login.html" class="favour-bar "><i class="fa-regular fa-heart favour-baricon fa-2xl"></i></a>
+                <!-- <a href="#" class="chat-bar"><i class="material-symbols-outlined chat-baricon md-36">chat</i></a> -->
+                <a class="menu-item" href="Login.html">เข้าสู่ระบบ/สมัครมาชิก</a>
+                  
+            </div>
+            <footer class="footer">
+                
+            </footer>
+            <div class="leftber">
+                <h3 class="head font"> Meow Meow/ซื้อขาย</h3>
+                <a class="button2 font" href="Login.html">ซื้อขายแมว </a>
+                <a class="button3 font" href="Login.html">หาคู่แมว</a>
+                <a class="button4 font" href="Login.html">หาบ้านให้แมว</a>
+            </div>
+            <div class="main">
+                <!-- สินค้า -->
+                <div class="products-con">
+                    <!-- <div class="products-item">
+                        <div class="products-farvor">
+                            <i class="fa-regular fa-heart fa-product fa-2xl"></i>
+                        </div>
+                        <img class="products-img" src="https://i.imgur.com/PQj3x0X.jpg" alt="แมว.png">
+                            <a href="info-buysell.html"></a>
+                        </img>
+                        <div class="products-breed">
+                            Khao Manee
+                        </div>
+                        <div class="products-address">
+                            ปทุมธานี
+                        </div>
+                        <div class="products-price">
+                            8,000 บาท
+                        </div>
+                        <div class="products-button">
+                            <a><button class="chat-seller space-main">แชท</button></a>
+                            <a><button class="call space-main" onclick="phonecall()">โทร</button></a>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
         </div>
-        <div>
-          <input name="gender" type="radio" value="หญิง"> หญิง
-        </div>
-        <div>
-          <input name="gender" type="radio" value="ไม่ระบุ"> ไม่ระบุ
-        </div>
-      </div>
-    </div>
-    <div class="form-input">
-      สิ่งที่สนใจ
-      <div>
-        <input name="interest" type="checkbox" value="หนังสือ"> หนังสือ
-      </div>
-      <div>
-        <input name="interest" type="checkbox" value="วิดีโอเกม"> วิดีโอเกม
-      </div>
-      <div>
-        <input name="interest" type="checkbox" value="การเมือง"> การเมือง
-      </div>
-    </div>
-    <div class="form-input">
-      คำอธิบายตัวตนเพิ่มเติม
-      <div>
-        <textarea name="description"></textarea>
-      </div>
-    </div>
-    <div class="form-input center">
-      <a href="https://shopee.com">T&C</a>
-    </div>
-    <div id="message" class="message"></div>
-    <div class="center">
-      <button onclick="submitData()" class="button">ส่งข้อมูล</button>
-    </div>
-  </div>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
-  <script src="index.js"></script>
-</body>
-</html> -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+        <script src="index.js"></script> 
+    </body>
+</html>

@@ -1,167 +1,79 @@
-// // ตัวอย่าง
 
-// const BASE_URL = 'http://localhost:8000'
 
-// let mode = 'CREATE' // default
-// let selectedid = ''
+  const BASE_URL = 'http://localhost:8000'
 
-// window.onload = async () => {
-//   const urlParams = new URLSearchParams(window.location.search)
-//   const id = urlParams.get('id')
-//   console.log('id', id)
-//   if (id) {
-//     mode = 'EDIT'
-//     selectedid = id
+function phonecall() {
+  window.location.href = 'login.html'
+}
 
-//     // 1. ดึงข้อมูล user เก่าออกมาก่อน
-//     try {
-//       const response = await axios.get(`${BASE_URL}/users/${id}`)
-//       const user = response.data
+// สร้างฟังก์ชั่นสำหรับดึงข้อมูลจาก API POST ด้วย Axios
+async function fetchBuysell() {
+  try {
+      const response = await axios.get(`${BASE_URL}/posts-buysell`); // เปลี่ยน URL API เป็น URL ที่ถูกต้อง
+      const products = response.data
 
-//       let firstNameDOM = document.querySelector('input[name=firstname]')
-//       let lastNameDOM = document.querySelector('input[name=lastname]')
-//       let ageDOM = document.querySelector('input[name=age]')
-//       let descriptionDOM = document.querySelector('textarea[name=description]')
+      // เรียกฟังก์ชั่นสำหรับแสดงข้อมูลใน HTML
+      displayBuysell(products)
+  } catch (error) {
+      console.error('Error fetching products:', error)
+  }
+}
 
-//       firstNameDOM.value = user.firstname
-//       lastNameDOM.value = user.lastname
-//       ageDOM.value = user.age
-//       descriptionDOM.value = user.description
+// ฟังก์ชั่นสำหรับแสดงข้อมูลใน HTML
+function displayBuysell(products) {
+  const productsContainer = document.querySelector('.products-con')
 
-//       let genderDOMs = document.querySelectorAll('input[name=gender]') || {}
-//       let interestDOMs = document.querySelectorAll('input[name=interest]') ||{} 
-      
-//       for (let i = 0 ; i < genderDOMs.length; i++) {
-//         if (genderDOMs[i].value == user.gender){
-//           genderDOMs[i].checked = true
-//         }
-//       }
+  // เคลียร์ข้อมูลเก่าทั้งหมด
+  productsContainer.innerHTML = ''
 
-//       for (let i = 0 ; i < interestDOMs.length; i++) {
-//         if (user.interests.includes(interestDOMs[i].value)){
-//           interestDOMs[i].checked = true
-//         }
-//       }
-      
-//     } catch (error) {
-//       console.log('error', error)
+  // วนลูปเพื่อสร้าง HTML สำหรับแต่ละสินค้าและแสดงข้อมูล
+  products.forEach(product => {
+      const productItem = document.createElement('div')
+      productItem.classList.add('products-item')
 
-//     }
+      // สร้าง HTML สำหรับแต่ละส่วนของข้อมูลสินค้า เช่น ชื่อสายพันธุ์ ราคา ที่อยู่ เป็นต้น
+      const productHTML = `
+          <div class="products-farvor">
+              </button><i class="fa-regular fa-heart fa-product fa-2xl" ></i>
+          </div>
+          <a href="Login.html">
+          <img class="products-img" src="${product.img}" alt="แมว.png">
+          </img>
+          <div class="products-breed">${product.breed}</div>
+          <div class="products-address">${product.address}</div>
+          <div class="products-price">${product.price} บาท</div>
+          <div class="products-button">
+              <a><button class="call space-main" onclick="phonecall('${product.username}')">โทร</button></a>
+          </div>
+          </a>
+      `
 
-//   }
-// }
+      // ใส่ HTML ของสินค้าลงใน productItem
+      productItem.innerHTML = productHTML
 
-// const validateData = (userData) => {
-//   let errors = []
+      // เพิ่ม productItem ลงใน container
+      productsContainer.appendChild(productItem)
+  })
+}
 
-//   if(!userData.firstname){
-//     errors.push('กรุณาใส่ชื่อจริง')
-//   }
-
-//   if(!userData.lastname){
-//     errors.push('กรุณาใส่นามสกุล')
-//   }
-
-//   if(!userData.age){
-//     errors.push('กรุณาใส่อายุ')
-//   }
-
-//   if(!userData.gender){
-//     errors.push('กรุณาใส่เพศ')
-//   }
-
-//   if(!userData.interests){
-//     errors.push('กรุณาใส่ความสนใน')
-//   }
-
-//   if(!userData.description){
-//     errors.push('กรุณาใส่รายละเอียดของคุณ')
-//   }
+//เบอร์โทรผู้ขาย
+async function phonecall(username) {
+  // /user/:id
+  try {
+    console.log(username)
+    const response = await axios.get(`${BASE_URL}/user/${username}`); 
+    const phone = response.data.data[0].phone
+    console.log(response.data.data[0].phone)
     
-
-//   return errors
-// }
-
-// const submitData = async () => {
-//     let firstNameDOM = document.querySelector('input[name=firstname]')
-//     let lastNameDOM = document.querySelector('input[name=lastname]')
-//     let ageDOM = document.querySelector('input[name=age]')
-
-//     let genderDOM = document.querySelector('input[name=gender]:checked') || {}
-//     let interestDOMs = document.querySelectorAll('input[name=interest]:checked') ||{} 
+    // เรียกฟังก์ชั่นสำหรับแสดงข้อมูลใน HTML
+    alert(`เบอร์ผู้ขาย: ${phone}`)
+  } catch (error) {
+      console.error('Error fetching products:', error)
+  }
   
-//     let descriptionDOM = document.querySelector('textarea[name=description]')
-  
-//     let messageDOM = document.getElementById('message')
+}
 
-
-//     try{
-//       let interest = ''
-    
-//       for (let i = 0; i < interestDOMs.length; i++) {
-//         interest += interestDOMs[i].value
-//         if (i != interestDOMs.length - 1) {
-//           interest += ', '
-//         }
-//       }
-    
-//       let userData = {
-//         firstname: firstNameDOM.value,
-//         lastname: lastNameDOM.value,
-//         age: ageDOM.value,
-//         gender: genderDOM.value,
-//         description: descriptionDOM.value,
-//         interests: interest
-//       }
-
-//       console.log('submit data', userData)
-
-//       // const errors = validateData(userData)
-
-//       // if(errors.length > 0){
-//       //   // มี errors เกิดขึ้น
-//       //   throw {
-//       //     message: 'กรอกข้อมูลไม่ครบ',
-//       //     errors: errors
-//       //   }
-//       // }
-
-//       let message = 'บันทึกข้อมูลเรียบร้อย'
-      
-//       if (mode == 'CREATE') {
-//         const response = await axios.post(`${BASE_URL}/users`, userData)
-//         console.log('response', response.data)
-//       } else {
-//         const response = await axios.put(`${BASE_URL}/users/${selectedid}`, userData)
-//         message = 'แก้ไขข้อมูลเรียบร้อย'
-//         console.log('response', response.data)
-//       }
-
-      
-
-//       messageDOM.innerText = message
-//       messageDOM.className = 'message success'
-
-//     } catch (error) {
-//       console.log('message', error.message)
-//       console.log('error', error.errors)
-//       if (error.response) {
-//         console.log(error.response)
-//         error.message = error.response.data.message
-//         error.errors = error.response.data.errors
-//       }
-
-//       let htmlData = '<div>'
-//       htmlData += `<div>${error.message}</div>`
-//       htmlData += `<ul>`
-//       for (let i = 0; i < error.errors.length; i++) {
-//         htmlData += `<li>${error.errors[i]}</li>`
-//       }
-//       htmlData += `</ul>`
-//       htmlData += '</div>'
-
-//       // messageDOM.innerText = 'บันทึกข้อมูลมีปัญหา'
-//       messageDOM.innerHTML = htmlData
-//       messageDOM.className = 'message danger'
-//       }
-// }
+// เรียกใช้งานฟังก์ชั่นเมื่อหน้าเว็บโหลดเสร็จ
+document.addEventListener('DOMContentLoaded', () => {
+  fetchBuysell();
+})
