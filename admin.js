@@ -36,7 +36,7 @@ const loadData = async () => {
         deleteDOMs[i].addEventListener('click', async (event) => {
             // ดึง id ออกมา 
             const id = event.target.dataset.id
-            const confirmDelete = window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบโพสต์นี้?')
+            const confirmDelete = window.confirm('คุณแน่ใจหรือไม่ว่าต้องการลบผู้ใช้นี้?')
             if (confirmDelete) {
 
                 try{

@@ -117,7 +117,7 @@ const loadData = async () => {
       <p class="inline-text space-main">${product.age}</p><br>
       <h3 class="inline-text space-main">วัคซีน</h3>
       <p class="inline-text space-main">${product.vaccine}</p>
-      <h3 class="space-main">รายระเอียด</h3>
+      <h3 class="space-main">รายละเอียด</h3>
       <p class="detail">${product.details}</p><br>
 
       <h3 class="space-main">ที่อยู่</h3>

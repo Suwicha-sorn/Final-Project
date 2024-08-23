@@ -88,7 +88,7 @@ window.onload = async () => {
             let fileUpload = document.getElementById('fileUpload')
             let postDOM = document.getElementById('post-edit')
 
-            postDOM.innerHTML = 'แก้ไขโพส'
+            postDOM.innerHTML = 'แก้ไขโพสต์'
             breedDOM.value = post.breed
             priceDOM.value = post.price
             ageDOM.value = post.age

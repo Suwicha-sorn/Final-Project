@@ -42,6 +42,7 @@ const rejectDOM = document.getElementsByClassName('reject')
 
 for (let i = 0; i <rejectDOM.length; i++) {
   rejectDOM[i].addEventListener('click', async (event) => {
+        event.preventDefault()
          // ดึง id ออกมา 
         const id = event.target.dataset.id
         console.log('event.target: ', event.target.dataset)
@@ -51,7 +52,7 @@ for (let i = 0; i <rejectDOM.length; i++) {
           try{
               await axios.delete(`${BASE_URL}/post-buysell/${id}`) 
               console.log('Response:', response)
-              fetchBuysell() // recursive function = เรียก function ตัวเอง
+              loadData() // recursive function = เรียก function ตัวเอง
         } catch (error) {
               console.log('error', error)
            }
